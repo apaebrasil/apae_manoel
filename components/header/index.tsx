@@ -2,28 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Navigation } from "../navigation"
-import { notFound } from "next/navigation"
-import { MenuItem } from "../navigation/type"
-
-async function handleGetNavigationMenus(): Promise<MenuItem[]> {
-  const response = await fetch(
-    "https://fluigdev.apaebrasil.org.br/portalapi/v1/menu/",
-    {
-      method: "GET",
-    }
-  )
-  console.log("response: ", response)
-
-  if (!response.ok) {
-    return notFound()
-  }
-
-  const data = await response.json()
-  return data
-}
+import { fetch } from "@/services"
 
 export async function Header() {
-  const response = await handleGetNavigationMenus()
+  const response = await fetch.getInfoWebSite({
+    domain: "apaebrasil",
+  })
+
+  const orderMenus = response.menus.toSorted(
+    (a, b) => Number(a.ordem) - Number(b.ordem)
+  )
 
   return (
     <div className="sticky top-0 z-50 flex h-auto w-full flex-col bg-linear-120 from-blue-900 to-blue-900">
@@ -45,7 +33,7 @@ export async function Header() {
         </div>
 
         <Navigation.Root className="hidden lg:block">
-          {response.map((navLink) => (
+          {orderMenus.map((navLink) => (
             <Navigation.Item key={navLink.id} navLink={navLink} />
           ))}
         </Navigation.Root>

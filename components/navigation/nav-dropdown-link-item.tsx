@@ -18,11 +18,11 @@ export function NavDropdownLinkItem({
   className,
 }: NavDropdownLinkItemProps) {
   return (
-    <li className="min-w-0 transition-colors hover:rounded-xl hover:bg-blue-100/40">
+    <li className="min-w-0 p-2 transition-colors hover:rounded-xl hover:bg-blue-100/80">
       <NavigationMenuLink
         className={cn(
           navigationMenuTriggerStyle(),
-          "h-auto w-full min-w-0 items-start bg-transparent hover:bg-white/10 hover:text-blue-950 focus:bg-white/10 focus:text-blue-950",
+          "block h-auto w-full min-w-0 items-start bg-transparent hover:bg-white/10 hover:text-blue-950 focus:bg-white/10 focus:text-blue-950",
           className
         )}
         render={

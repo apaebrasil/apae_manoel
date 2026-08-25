@@ -15,7 +15,6 @@ const triggerStyles =
 
 export function NavMenuItem({ navLink }: { navLink: MenuItem }) {
   const hasSubItems = navLink.submenus.length > 0
-  console.log("navLink: ", navLink)
   const hasLinkExternal = navLink.interno
   return (
     <NavigationMenuItem className="static">
@@ -32,7 +31,7 @@ export function NavMenuItem({ navLink }: { navLink: MenuItem }) {
             />
           }
           className={cn(
-            "h-9 rounded-md px-4 py-2 text-sm font-medium",
+            "h-9 rounded-md px-5 text-sm font-medium",
             triggerStyles
           )}
         >

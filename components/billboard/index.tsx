@@ -2,10 +2,10 @@
 
 import { Radio } from "lucide-react"
 import { motion, Variants } from "motion/react"
-import { NewsItem } from "@/constants/news"
+import { Noticies } from "../news/type"
 
 interface BillboardProps {
-  data: NewsItem[]
+  data: Noticies[]
 }
 
 const fadeUp: Variants = {
@@ -43,7 +43,7 @@ export function Billboard({ data }: BillboardProps) {
                 className="size-1.5 animate-pulse rounded-full bg-blue-400"
                 aria-hidden
               />
-              <span className="font-medium text-zinc-800">{item.title}</span>
+              <span className="font-medium text-zinc-800">{item.titulo}</span>
             </span>
           ))}
         </div>

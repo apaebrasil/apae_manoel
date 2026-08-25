@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react"
 import { Button } from "../ui/button"
+import { LocationMap } from "./location-map"
 
 export function ContactMe() {
   return (
@@ -117,6 +118,14 @@ export function ContactMe() {
           </Button>
         </form>
       </aside>
+
+      <div className="col-span-2 mt-10 space-y-5">
+        <h2 className="text-center text-xl leading-relaxed font-bold text-white lg:text-3xl">
+          Como nós encontrar
+        </h2>
+
+        <LocationMap />
+      </div>
     </div>
   )
 }

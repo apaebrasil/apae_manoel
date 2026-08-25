@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        protocol: "https",
+        hostname: "fluigdev.apaebrasil.org.br",
+        pathname: "/volume/stream/**",
+      },
+      new URL("https://apae-cms.s3.us-east-1.amazonaws.com/**"),
     ],
   },
 }

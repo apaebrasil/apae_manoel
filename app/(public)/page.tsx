@@ -6,8 +6,18 @@ import { HeroSection } from "@/components/hero"
 import { News } from "@/components/news"
 import { SectionWrapper } from "@/components/section"
 import { ServiceSection } from "@/components/service-section"
+import { Separator } from "@/components/ui/separator"
+import { fetch } from "@/services"
 
-export default function Page() {
+interface PageParams {
+  searchParams: { id: string }
+}
+
+export default async function Page({ searchParams }: PageParams) {
+  const response = await fetch.getInfoWebSite({
+    domain: "apaebrasil",
+  })
+
   return (
     <main>
       <SectionWrapper
@@ -23,7 +33,7 @@ export default function Page() {
         className="relative flex min-h-screen items-center overflow-hidden py-16 md:py-24"
         aria-labelledby="news-heading"
       >
-        <News />
+        <News noticias={response.noticias} isShowHeaderNews={true} />
       </SectionWrapper>
 
       <SectionWrapper
@@ -57,6 +67,8 @@ export default function Page() {
       >
         <ContactMe />
       </SectionWrapper>
+
+      <Separator className="bg-blue-900 shadow-2xl shadow-blue-200" />
 
       <SectionWrapper id="footer" aria-labelledby="footer-heading">
         <Footer />

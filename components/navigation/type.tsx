@@ -19,4 +19,5 @@ export interface MenuItem {
   submenus: Submenu[]
   interno: boolean
   link: string
+  ordem: boolean
 }
