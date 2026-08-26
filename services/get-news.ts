@@ -38,7 +38,7 @@ interface GetNewsProps {
   sitesIds: string
 }
 
-export async function getNews(): Promise<GetNewsProps[]> {
+export async function getNews(): Promise<{ itens: [GetNewsProps] }> {
   const response = await fetch(
     "https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia"
   )

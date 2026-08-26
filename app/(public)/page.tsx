@@ -15,7 +15,7 @@ interface PageParams {
 
 export default async function Page({ searchParams }: PageParams) {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil",
+    domain: "apaebrasil.org.br",
   })
 
   return (

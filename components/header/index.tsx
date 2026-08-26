@@ -6,7 +6,7 @@ import { fetch } from "@/services"
 
 export async function Header() {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil",
+    domain: "apaebrasil.org.br",
   })
 
   const orderMenus = response.menus.toSorted(

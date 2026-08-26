@@ -47,8 +47,8 @@ export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
 
       {/* <Billboard data={featuredNews} /> */}
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <div className="group relative min-h-150 overflow-hidden rounded-3xl">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+        <div className="group relative col-start-1 col-end-4 min-h-150 overflow-hidden rounded-3xl">
           <Image
             src={url}
             alt={highlight.titulo}
@@ -65,6 +65,8 @@ export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
             <h3 className="mb-2 text-2xl leading-tight font-bold md:text-3xl">
               {highlight.titulo}
             </h3>
+
+            <p className="truncate">{highlight.conteudo}</p>
 
             <Link
               href={`/noticias/${highlight.uuid}`}
