@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Billboard } from "../billboard"
 import { Button } from "../ui/button"
 import { SquareArrowOutUpRight } from "lucide-react"
 import { Noticies } from "./type"
@@ -39,13 +38,13 @@ export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
           </div>
 
           <Button className="cursor-pointer justify-end rounded-3xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
-            <span className="text-sm font-medium">Ver todas notícias</span>
-            <SquareArrowOutUpRight />
+            <Link href="/noticias" className="flex items-center gap-2.5">
+              <span className="text-sm font-medium">Ver todas notícias</span>
+              <SquareArrowOutUpRight />
+            </Link>
           </Button>
         </div>
       )}
-
-      {/* <Billboard data={featuredNews} /> */}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
         <div className="group relative col-start-1 col-end-4 min-h-150 overflow-hidden rounded-3xl">

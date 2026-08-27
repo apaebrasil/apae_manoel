@@ -18,7 +18,7 @@ interface DateDetails {
 type CreatedAt = DateDetails
 type UpdatedAt = DateDetails
 
-interface GetNewsProps {
+export interface GetNewsProps {
   id: number
   uuid: string
   categoria: string
