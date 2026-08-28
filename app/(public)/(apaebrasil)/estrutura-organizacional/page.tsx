@@ -17,7 +17,7 @@ export default function Page() {
     <main className="h-dvh bg-blue-50">
       <div className="container mx-auto">
         <SectionWrapper className="py-16 md:py-24">
-          <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 p-10 bg-blue-100/20">
+          <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 bg-blue-100/20 p-10">
             <div className="pointer-events-none absolute -top-16 -right-10 h-56 w-56 animate-[float_6s_ease-in-out_infinite] rounded-full border-4 border-blue-300 bg-blue-200/40" />
 
             <div className="relative z-10 flex flex-col gap-5">
@@ -42,7 +42,7 @@ export default function Page() {
           <div className="shrink-0">
             <div className="w-72 rounded-md border-2 border-blue-200 bg-blue-100 p-3">
               <h3 className="mb-3.5 text-xs font-bold text-zinc-800">
-                Navegar por disciplina
+                Navegar por departamento
               </h3>
 
               <ul className="space-y-1 pt-3">
