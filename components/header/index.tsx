@@ -14,7 +14,7 @@ export async function Header() {
   )
 
   return (
-    <div className="sticky top-0 z-50 flex h-auto w-full flex-col bg-linear-120 from-blue-900 to-blue-900">
+    <div className="sticky top-0 z-50 flex h-auto w-full flex-col bg-linear-120 from-blue-950 to-blue-950">
       <header
         className="flex items-center justify-between px-4 py-2"
         role="navigation"
