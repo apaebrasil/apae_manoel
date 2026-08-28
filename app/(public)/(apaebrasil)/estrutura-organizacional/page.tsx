@@ -16,8 +16,8 @@ export default function Page() {
   return (
     <main className="h-dvh bg-blue-50">
       <div className="container mx-auto">
-        <SectionWrapper className="bg-blue-50 py-16 md:py-24">
-          <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 p-10">
+        <SectionWrapper className="py-16 md:py-24">
+          <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 p-10 bg-blue-100/20">
             <div className="pointer-events-none absolute -top-16 -right-10 h-56 w-56 animate-[float_6s_ease-in-out_infinite] rounded-full border-4 border-blue-300 bg-blue-200/40" />
 
             <div className="relative z-10 flex flex-col gap-5">
@@ -46,7 +46,7 @@ export default function Page() {
               </h3>
 
               <ul className="space-y-1 pt-3">
-                <li className="group flex cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm hover:bg-white/30">
+                <li className="group flex cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm">
                   <div className="flex items-center gap-2">
                     <Users2 size={14} />
                     <span>Todos os departamentos</span>
@@ -54,28 +54,28 @@ export default function Page() {
 
                   <ArrowRight size={14} className="hidden group-hover:block" />
                 </li>
-                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm hover:bg-white/30">
+                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm">
                   <div className="flex items-center gap-2">
                     <Star size={14} />
                     <span>Diretoria executiva</span>
                   </div>
                   <ArrowRight size={14} className="hidden group-hover:block" />
                 </li>
-                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm hover:bg-white/30">
+                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm">
                   <div className="flex items-center gap-2">
                     <Code2 size={14} />
                     <span>TI</span>
                   </div>
                   <ArrowRight size={14} className="hidden group-hover:block" />
                 </li>
-                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm hover:bg-white/30">
+                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm">
                   <div className="flex items-center gap-2">
                     <Briefcase size={14} />
                     <span>RH</span>
                   </div>
                   <ArrowRight size={14} className="hidden group-hover:block" />
                 </li>
-                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm hover:bg-white/30">
+                <li className="group flex w-64 cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm">
                   <div className="flex items-center gap-2">
                     <DollarSign size={14} />
                     <span>Financeiros</span>
