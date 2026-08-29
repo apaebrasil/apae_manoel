@@ -9,6 +9,7 @@ export async function Header() {
     domain: "apaebrasil.org.br",
   })
 
+  console.log("headeer: ", response)
   const orderMenus = response.menus.toSorted(
     (a, b) => Number(a.ordem) - Number(b.ordem)
   )
@@ -34,7 +35,11 @@ export async function Header() {
 
         <Navigation.Root className="hidden lg:block">
           {orderMenus.map((navLink) => (
-            <Navigation.Item key={navLink.id} navLink={navLink} />
+            <Navigation.Item
+              key={navLink.id}
+              navLink={navLink}
+              siteId={response.id}
+            />
           ))}
         </Navigation.Root>
       </header>

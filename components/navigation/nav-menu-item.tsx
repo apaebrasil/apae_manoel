@@ -10,12 +10,18 @@ import { NavDropdownContent } from "@/components/navigation/nav-dropdown-content
 import { cn } from "@/lib/utils"
 import { MenuItem } from "./type"
 
+interface NavMenuItemProps {
+  navLink: MenuItem
+  siteId: number
+}
+
 const triggerStyles =
   "bg-transparent text-white transition-colors hover:bg-white/10 hover:text-white focus:bg-white/10 focus:text-white data-popup-open:bg-white/15 data-popup-open:text-white"
 
-export function NavMenuItem({ navLink }: { navLink: MenuItem }) {
+export function NavMenuItem({ navLink, siteId }: NavMenuItemProps) {
   const hasSubItems = navLink.submenus.length > 0
   const hasLinkExternal = navLink.interno
+
   return (
     <NavigationMenuItem className="static">
       {hasSubItems ? (
@@ -39,7 +45,9 @@ export function NavMenuItem({ navLink }: { navLink: MenuItem }) {
         </NavigationMenuLink>
       )}
 
-      {hasSubItems && <NavDropdownContent items={navLink.submenus} />}
+      {hasSubItems && (
+        <NavDropdownContent items={navLink.submenus} siteId={siteId} />
+      )}
     </NavigationMenuItem>
   )
 }

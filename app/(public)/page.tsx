@@ -7,7 +7,6 @@ import { HeroSection } from "@/components/hero"
 import { News } from "@/components/news"
 import { SectionWrapper } from "@/components/section"
 import { ServiceSection } from "@/components/service-section"
-import { Separator } from "@/components/ui/separator"
 import { fetch } from "@/services"
 
 interface PageParams {
@@ -19,6 +18,7 @@ export default async function Page({ searchParams }: PageParams) {
     domain: "apaebrasil.org.br",
   })
 
+  console.log("site: ", response)
   return (
     <main>
       <SectionWrapper

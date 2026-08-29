@@ -1,7 +1,8 @@
+import { Button } from "../ui/button"
 import { ImpactStatCard } from "./impact-stat-card"
 
 const data = {
-  title: "Nosso Impacto",
+  title: "Balanço Social",
   description:
     "Veja alguns dos nossos números e como transformamos a vida de milhões de pessoas",
   summary:

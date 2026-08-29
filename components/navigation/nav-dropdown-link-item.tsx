@@ -9,14 +9,20 @@ import { Submenu } from "./type"
 
 type NavDropdownLinkItemProps = Submenu & {
   className?: string
+  siteId: number
 }
 
 export function NavDropdownLinkItem({
   descricao,
   link,
   nome,
+  siteId,
   className,
 }: NavDropdownLinkItemProps) {
+  const isNeedsSiteId =
+    link == "/noticias" ||
+    link == "/evento" ||
+    link == "/estrutura-organizacional"
   return (
     <li className="min-w-0 p-2 transition-colors hover:rounded-xl hover:bg-blue-100/80">
       <NavigationMenuLink
@@ -26,7 +32,7 @@ export function NavDropdownLinkItem({
           className
         )}
         render={
-          <Link href={link}>
+          <Link href={isNeedsSiteId ? `${link}/${siteId}` : link}>
             <div className="flex min-w-0 flex-col gap-1 text-sm">
               <div className="leading-none font-medium">{nome}</div>
               <div className="line-clamp-2 min-w-0 text-muted-foreground">
