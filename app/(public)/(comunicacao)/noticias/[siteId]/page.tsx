@@ -48,10 +48,10 @@ export default async function Page({ params }: PageProps) {
   const totalPages = responseNews.totalPaginas
 
   return (
-    <main className="min-h-dvh bg-blue-50 px-5">
-      <SectionWrapper className="py-16 md:py-24">
-        <header className="relative container mx-auto mb-10">
-          <span className="pointer-events-none absolute -top-10 left-0 z-0 text-[6rem] leading-none font-black text-blue-950/5 select-none sm:text-[8rem]">
+    <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
+      <SectionWrapper className="py-12 md:py-24">
+        <header className="relative container mx-auto mb-10 overflow-hidden">
+          <span className="pointer-events-none absolute -top-6 left-0 z-0 text-5xl leading-none font-black text-blue-950/5 select-none sm:-top-10 sm:text-7xl md:text-[8rem]">
             NOTÍCIAS
           </span>
 
@@ -61,7 +61,7 @@ export default async function Page({ params }: PageProps) {
               Atualizado hoje
             </span>
 
-            <h2 className="text-3xl font-bold text-blue-900 sm:text-4xl">
+            <h2 className="text-2xl font-bold text-blue-900 sm:text-3xl md:text-4xl">
               Notícias{" "}
               <span className="relative inline-block whitespace-nowrap">
                 <span className="relative z-10">de hoje</span>
@@ -147,10 +147,10 @@ export default async function Page({ params }: PageProps) {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper className="py-16 md:py-24">
-        <div className="container mx-auto mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <SectionWrapper className="py-12 md:py-24">
+        <div className="container mx-auto mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {newsData.map((news) => (
-            <Link key={news.uuid} href={`/noticias/${1}/${news.uuid}`}>
+            <Link key={news.uuid} href={`/noticias/${siteId}/${news.uuid}`}>
               <Card className="group/card cursor-pointer gap-0 overflow-hidden rounded-2xl p-0 shadow-sm shadow-blue-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-950/10 hover:ring-blue-200">
                 <CardHeader className="relative h-56 w-full overflow-hidden p-0">
                   {news.url ? (

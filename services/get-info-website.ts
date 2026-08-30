@@ -1,6 +1,7 @@
 import "server-only"
 import { MenuItem, Submenu } from "@/components/navigation/type"
 import { Noticies } from "@/components/news/type"
+import { CategoriaTransparencia } from "@/components/transparency/type"
 
 interface QueryParams {
   domain: string
@@ -22,6 +23,7 @@ interface ResponseWebsiteInfo {
   menus: MenuItem[]
   submenus: Submenu[]
   noticias: Noticies[]
+  categorias: CategoriaTransparencia[]
 }
 
 export async function getInfoWebSite({

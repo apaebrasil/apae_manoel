@@ -98,7 +98,7 @@ export async function getNewsHighlight(): Promise<GetNewsProps[]> {
 }
 
 interface newsBySlugProps {
-  id: number
+  id: string
 }
 
 export async function newsBySlug({

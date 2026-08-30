@@ -7,9 +7,10 @@ import { Noticies } from "./type"
 interface NewsProps {
   noticias: Noticies[]
   isShowHeaderNews: boolean
+  siteId: string
 }
 
-export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
+export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
   const featuredNews = news?.filter((item) => item.destaque)
   const [highlight, ...rest] = featuredNews
 
@@ -68,7 +69,7 @@ export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
             <p className="truncate">{highlight.conteudo}</p>
 
             <Link
-              href={`/noticias/${highlight.uuid}`}
+              href={`/noticias/${siteId}/${highlight.uuid}`}
               className="flex items-center gap-2 text-sm font-medium hover:underline"
             >
               Ler matéria completa
@@ -81,7 +82,7 @@ export function News({ noticias: news, isShowHeaderNews }: NewsProps) {
           {rest.map((item) => (
             <Link
               key={item.id}
-              href={`/noticias/${item.id}`}
+              href={`/noticias/${siteId}/${item.uuid}`}
               className="flex w-full items-center gap-4 rounded-2xl border border-zinc-300 bg-white p-4 transition-all duration-300 hover:border-blue-700 hover:bg-white/50 lg:hover:translate-x-8"
             >
               <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl">

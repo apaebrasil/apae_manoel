@@ -1,9 +1,9 @@
-import { JSX } from "react";
+import { JSX } from "react"
 
 interface SocialLinksItem {
-  label: string;
-  href: string;
-  icon: JSX.Element;
+  label: string
+  href: string
+  icon: JSX.Element
 }
 
 export const socialLinks: SocialLinksItem[] = [
@@ -92,4 +92,4 @@ export const socialLinks: SocialLinksItem[] = [
       </svg>
     ),
   },
-];
+]

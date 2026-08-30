@@ -25,7 +25,7 @@ export const navLinks: NavGroup[] = [
           "Conheça a história, a missão e os valores que fundamentam a Federação Nacional das Apaes.",
       },
       {
-        href: "/estrutura-oraganizacional",
+        href: "/estrutura-organizacional",
         title: "Estrutura Organizacional",
         description:
           "Diretoria, conselhos e organograma institucional da Apae Brasil.",

@@ -22,7 +22,8 @@ export function NavDropdownLinkItem({
   const isNeedsSiteId =
     link == "/noticias" ||
     link == "/evento" ||
-    link == "/estrutura-organizacional"
+    link == "/estrutura-organizacional" ||
+    link == "/transparencia"
   return (
     <li className="min-w-0 p-2 transition-colors hover:rounded-xl hover:bg-blue-100/80">
       <NavigationMenuLink

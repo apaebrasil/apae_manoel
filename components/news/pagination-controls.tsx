@@ -86,59 +86,61 @@ export function PaginationControls({ totalPages }: PaginationControlsProps) {
 
   return (
     <div className="mt-4 border-t border-blue-900/10 pt-8">
-      <Pagination>
-        <PaginationContent className="gap-1.5 sm:gap-2">
-          <PaginationItem>
-            <PaginationPrevious
-              text="Anterior"
-              size="lg"
-              href={createPageURL(currentPage - 1)}
-              aria-disabled={currentPage <= 1}
-              className={clsx(
-                "rounded-full border border-blue-200 text-blue-900 hover:border-blue-300 hover:bg-blue-50",
-                currentPage <= 1 && "pointer-events-none opacity-40"
-              )}
-            />
-          </PaginationItem>
+      <div className="overflow-x-auto">
+        <Pagination className="w-max min-w-full">
+          <PaginationContent className="gap-1 sm:gap-2">
+            <PaginationItem>
+              <PaginationPrevious
+                text="Anterior"
+                size="lg"
+                href={createPageURL(currentPage - 1)}
+                aria-disabled={currentPage <= 1}
+                className={clsx(
+                  "rounded-full border border-blue-200 text-blue-900 hover:border-blue-300 hover:bg-blue-50",
+                  currentPage <= 1 && "pointer-events-none opacity-40"
+                )}
+              />
+            </PaginationItem>
 
-          {pages.map((page, index) =>
-            page === "ellipsis" ? (
-              <PaginationItem key={`ellipsis-${index}`}>
-                <PaginationEllipsis className="text-blue-900/40" />
-              </PaginationItem>
-            ) : (
-              <PaginationItem key={page}>
-                <PaginationLink
-                  size="icon-lg"
-                  href={createPageURL(page)}
-                  isActive={currentPage === page}
-                  className={clsx(
-                    "rounded-full font-semibold transition-colors",
-                    currentPage === page
-                      ? "bg-blue-600 text-white shadow-sm shadow-blue-600/30 hover:bg-blue-700 hover:text-white"
-                      : "border-transparent text-blue-900/70 hover:bg-blue-50 hover:text-blue-900"
-                  )}
-                >
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            )
-          )}
+            {pages.map((page, index) =>
+              page === "ellipsis" ? (
+                <PaginationItem key={`ellipsis-${index}`}>
+                  <PaginationEllipsis className="text-blue-900/40" />
+                </PaginationItem>
+              ) : (
+                <PaginationItem key={page}>
+                  <PaginationLink
+                    size="icon-lg"
+                    href={createPageURL(page)}
+                    isActive={currentPage === page}
+                    className={clsx(
+                      "shrink-0 rounded-full font-semibold transition-colors",
+                      currentPage === page
+                        ? "bg-blue-600 text-white shadow-sm shadow-blue-600/30 hover:bg-blue-700 hover:text-white"
+                        : "border-transparent text-blue-900/70 hover:bg-blue-50 hover:text-blue-900"
+                    )}
+                  >
+                    {page}
+                  </PaginationLink>
+                </PaginationItem>
+              )
+            )}
 
-          <PaginationItem>
-            <PaginationNext
-              text="Próximo"
-              size="lg"
-              href={createPageURL(currentPage + 1)}
-              aria-disabled={currentPage >= totalPages}
-              className={clsx(
-                "rounded-full border border-blue-200 text-blue-900 hover:border-blue-300 hover:bg-blue-50",
-                currentPage >= totalPages && "pointer-events-none opacity-40"
-              )}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            <PaginationItem>
+              <PaginationNext
+                text="Próximo"
+                size="lg"
+                href={createPageURL(currentPage + 1)}
+                aria-disabled={currentPage >= totalPages}
+                className={clsx(
+                  "rounded-full border border-blue-200 text-blue-900 hover:border-blue-300 hover:bg-blue-50",
+                  currentPage >= totalPages && "pointer-events-none opacity-40"
+                )}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   )
 }

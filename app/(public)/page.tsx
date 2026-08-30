@@ -35,7 +35,11 @@ export default async function Page({ searchParams }: PageParams) {
           className="relative flex min-h-screen items-center overflow-hidden py-16 md:py-24"
           aria-labelledby="news-heading"
         >
-          <News noticias={response.noticias} isShowHeaderNews={true} />
+          <News
+            noticias={response.noticias}
+            isShowHeaderNews={true}
+            siteId={String(response.id)}
+          />
         </SectionWrapper>
       )}
 
@@ -81,10 +85,6 @@ export default async function Page({ searchParams }: PageParams) {
         </h2>
 
         <LocationMap />
-      </SectionWrapper>
-
-      <SectionWrapper id="footer" aria-labelledby="footer-heading">
-        <Footer />
       </SectionWrapper>
     </main>
   )
