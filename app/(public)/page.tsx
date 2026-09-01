@@ -1,19 +1,18 @@
 import { About } from "@/components/about"
 import { ContactMe } from "@/components/contact-me"
-import { LocationMap } from "@/components/contact-me/location-map"
 import { CTASection } from "@/components/cta-section"
-import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/hero"
 import { News } from "@/components/news"
+import { Partners } from "@/components/partners"
 import { SectionWrapper } from "@/components/section"
 import { ServiceSection } from "@/components/service-section"
 import { fetch } from "@/services"
 
-interface PageParams {
-  searchParams: { id: string }
-}
+// interface PageParams {
+//   searchParams: { id: string }
+// }
 
-export default async function Page({ searchParams }: PageParams) {
+export default async function Page() {
   const response = await fetch.getInfoWebSite({
     domain: "apaebrasil.org.br",
   })
@@ -80,11 +79,7 @@ export default async function Page({ searchParams }: PageParams) {
         className="bg-blue-50 px-5 py-16 md:py-24"
         aria-labelledby="contact-me-location"
       >
-        <h2 className="mb-10 text-center text-xl leading-relaxed font-bold text-zinc-900 lg:text-3xl">
-          Como nós encontrar
-        </h2>
-
-        <LocationMap />
+        <Partners />
       </SectionWrapper>
     </main>
   )

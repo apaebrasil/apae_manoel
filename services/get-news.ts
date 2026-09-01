@@ -54,8 +54,8 @@ export async function getNews({
   limit = 5,
   slug,
   siteId,
+  titulo,
 }: GetNewsProps) {
-  console.log("siteId: ", siteId)
   let url = ""
 
   if (slug) {
@@ -65,8 +65,12 @@ export async function getNews({
   if (page && limit) {
     url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&pagina=${page}&tamanho=${limit}`
   }
+
+  if (titulo) {
+    url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&titulo=${titulo}&pagina=${page}&tamanho=${limit}`
+  }
+  console.log("URL final:", url)
   const response = await fetch(url)
-  console.log(response)
   if (!response.ok) {
     throw new Error("Erro ao fazer requisiçaõ das notícias")
   }

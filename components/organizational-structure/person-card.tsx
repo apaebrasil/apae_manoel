@@ -4,9 +4,19 @@ import { useState } from "react"
 import Image from "next/image"
 import { format } from "date-fns"
 import { ptBR } from "date-fns/locale"
-import { CalendarDays, Check, Copy, Mail, Phone } from "lucide-react"
+import {
+  Building2,
+  CalendarDays,
+  Check,
+  Copy,
+  Mail,
+  MapPin,
+  Phone,
+  XIcon,
+} from "lucide-react"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -142,73 +152,100 @@ export function PersonCard({ person, setorNome }: PersonCardProps) {
         </Badge>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-sm">
-        <DialogHeader className="items-center text-center">
-          <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full ring-4 ring-blue-100">
+      <DialogContent
+        showCloseButton={false}
+        className="flex max-h-[85vh] flex-col gap-0 overflow-hidden p-0 sm:max-w-lg"
+      >
+        <div className="relative shrink-0">
+          <div className="h-20 bg-linear-to-r from-blue-100 via-blue-50 to-white" />
+          <DialogClose className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-zinc-500 backdrop-blur transition-colors hover:bg-white hover:text-zinc-900">
+            <XIcon className="h-4 w-4" />
+            <span className="sr-only">Fechar</span>
+          </DialogClose>
+          <div className="absolute -bottom-10 left-6 h-20 w-20 overflow-hidden rounded-full ring-4 ring-white">
             <PersonAvatar
               nome={person.nome}
               foto={person.foto}
-              size={96}
+              size={80}
               textClassName="text-lg"
             />
           </div>
+        </div>
 
-          <DialogTitle className="text-lg">{person.nome}</DialogTitle>
-          <DialogDescription className="text-sm">
-            {person.cargo}
-          </DialogDescription>
+        <div className="overflow-y-auto px-6 pt-12 pb-6">
+          <DialogHeader className="items-start gap-1 text-left">
+            <DialogTitle className="text-xl">{person.nome}</DialogTitle>
+            <DialogDescription className="text-sm font-medium text-blue-600">
+              {person.cargo}
+            </DialogDescription>
+          </DialogHeader>
 
-          <div className="flex flex-wrap justify-center gap-1.5">
-            <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-              {person.lotacao}
-            </Badge>
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-zinc-500">
+            {person.lotacao && (
+              <span className="flex items-center gap-1.5">
+                <Building2 className="h-4 w-4 text-zinc-400" />
+                {person.lotacao}
+              </span>
+            )}
             {setorNome && (
-              <Badge
-                variant="outline"
-                className="border-blue-200 text-blue-700"
-              >
+              <span className="flex items-center gap-1.5">
+                <MapPin className="h-4 w-4 text-zinc-400" />
                 {setorNome}
-              </Badge>
+              </span>
             )}
           </div>
-        </DialogHeader>
 
-        {person.descricao && (
-          <p className="text-sm leading-relaxed text-zinc-700">
-            {person.descricao}
-          </p>
-        )}
-
-        <Separator />
-
-        {person.data_admissao && (
-          <div className="flex items-center gap-2 text-xs text-zinc-500">
-            <CalendarDays className="h-3.5 w-3.5 shrink-0 text-blue-500" />
-            <span>
-              Na equipe desde{" "}
-              {format(new Date(person.data_admissao), "d 'de' MMMM 'de' yyyy", {
-                locale: ptBR,
-              })}
-            </span>
-          </div>
-        )}
-
-        <div className="space-y-1">
-          {person.email && (
-            <CopyField
-              icon={Mail}
-              value={person.email}
-              href={`mailto:${person.email}`}
-              label="e-mail"
-            />
+          {person.data_admissao && (
+            <div className="mt-2 flex items-center gap-1.5 text-xs text-zinc-500">
+              <CalendarDays className="h-3.5 w-3.5 shrink-0" />
+              <span>
+                Na equipe desde{" "}
+                {format(
+                  new Date(person.data_admissao),
+                  "d 'de' MMMM 'de' yyyy",
+                  { locale: ptBR }
+                )}
+              </span>
+            </div>
           )}
-          {person.contato && (
-            <CopyField
-              icon={Phone}
-              value={person.contato}
-              href={`tel:${person.contato}`}
-              label="telefone"
-            />
+
+          {person.descricao && (
+            <>
+              <Separator className="my-4" />
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-zinc-900">Sobre</h3>
+                <div className="max-h-56 overflow-y-auto pr-2 text-sm leading-relaxed whitespace-pre-line text-zinc-800">
+                  {person.descricao}
+                </div>
+              </div>
+            </>
+          )}
+
+          {(person.email || person.contato) && (
+            <>
+              <Separator className="my-4" />
+              <div className="space-y-2">
+                <h3 className="text-sm font-semibold text-zinc-900">Contato</h3>
+                <div className="space-y-1">
+                  {person.email && (
+                    <CopyField
+                      icon={Mail}
+                      value={person.email}
+                      href={`mailto:${person.email}`}
+                      label="e-mail"
+                    />
+                  )}
+                  {person.contato && (
+                    <CopyField
+                      icon={Phone}
+                      value={person.contato}
+                      href={`tel:${person.contato}`}
+                      label="telefone"
+                    />
+                  )}
+                </div>
+              </div>
+            </>
           )}
         </div>
       </DialogContent>

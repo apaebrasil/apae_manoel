@@ -1,4 +1,6 @@
 import Image from "next/image"
+import Link from "next/link"
+import { redirect } from "next/navigation"
 import {
   ImageOff,
   Newspaper,
@@ -24,28 +26,47 @@ import {
   ComboboxInput,
   ComboboxList,
 } from "@/components/ui/combobox"
-import { Calendar } from "@/components/ui/calendar"
 import { Card, CardHeader } from "@/components/ui/card"
 import { formatedDate } from "@/lib/formated-date"
 import { PaginationControls } from "@/components/news/pagination-controls"
-import Link from "next/link"
+import { BraszilianCalendar } from "@/components/calendar"
 
 interface PageProps {
-  params: Promise<{ page?: string; siteId: string }>
+  params: Promise<{ siteId: string }>
+  searchParams: Promise<{ page?: string; titulo: string }>
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
   const itemPerPage = 5
-  const { siteId, page } = await params
+
+  const { siteId } = await params
+  const currentParams = await searchParams
+  const { page, titulo } = await searchParams
+
   const currentPage = Number(page) || 1
+
   const responseNews = await fetch.getNews({
     page: currentPage,
     limit: itemPerPage,
     siteId,
+    titulo,
   })
 
   const newsData = responseNews.news
-  const totalPages = responseNews.totalPaginas
+  const totalPages = Math.ceil(
+    responseNews.totalPaginas / responseNews.news.length
+  )
+
+  async function removeFilter() {
+    "use server"
+    const params = new URLSearchParams(currentParams as Record<string, string>)
+    params.delete("titulo")
+
+    const targetUrl = params.toString()
+      ? `/noticias?${params.toString()}`
+      : `/noticias/${siteId}`
+    redirect(targetUrl)
+  }
 
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
@@ -77,14 +98,15 @@ export default async function Page({ params }: PageProps) {
       </SectionWrapper>
 
       <SectionWrapper className="container mx-auto">
-        <div
+        <form
+          method="GET"
           role="search"
           aria-label="Filtrar notícias"
           className="flex flex-col gap-4 rounded-2xl border border-blue-200 bg-white p-5 shadow-sm shadow-blue-950/5 lg:flex-row lg:items-end"
         >
           <div className="flex flex-1 flex-col gap-1.5">
             <label
-              htmlFor="searchFilter"
+              htmlFor="titulo"
               className="text-xs font-semibold text-blue-900/70 uppercase"
             >
               Buscar
@@ -92,10 +114,11 @@ export default async function Page({ params }: PageProps) {
             <div className="relative">
               <Search className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-blue-400" />
               <Input
-                id="searchFilter"
-                name="searchFilter"
+                key={titulo ?? ""}
+                name="titulo"
                 placeholder="Buscar pelo título da notícia"
                 className="pl-9"
+                defaultValue={titulo ?? ""}
               />
             </div>
           </div>
@@ -135,16 +158,27 @@ export default async function Page({ params }: PageProps) {
                 className="w-auto"
               >
                 <ComboboxList className="p-0">
-                  <Calendar mode="range" className="px-0" />
+                  <BraszilianCalendar />
                 </ComboboxList>
               </ComboboxContent>
             </Combobox>
           </div>
 
-          <Button className="cursor-pointer bg-blue-600 px-6 hover:bg-blue-700 lg:mb-0">
-            Filtrar
-          </Button>
-        </div>
+          <div className="space-x-5">
+            <Button
+              type="submit"
+              className="cursor-pointer bg-blue-600 px-6 hover:bg-blue-700 lg:mb-0"
+            >
+              Filtrar
+            </Button>
+            <Link
+              href={`/noticias/${siteId}`}
+              className="cursor-pointer lg:mb-0"
+            >
+              Limpar filtro
+            </Link>
+          </div>
+        </form>
       </SectionWrapper>
 
       <SectionWrapper className="py-12 md:py-24">

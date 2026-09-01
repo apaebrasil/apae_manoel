@@ -21,7 +21,7 @@ const triggerStyles =
 export function NavMenuItem({ navLink, siteId }: NavMenuItemProps) {
   const hasSubItems = navLink.submenus.length > 0
   const hasLinkExternal = navLink.interno
-
+  console.log(navLink)
   return (
     <NavigationMenuItem className="static">
       {hasSubItems ? (

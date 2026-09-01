@@ -78,7 +78,7 @@ export function PaginationControls({ totalPages }: PaginationControlsProps) {
     return `${pathname}?${params.toString()}`
   }
 
-  if (totalPages <= 1) {
+  if (totalPages < 1) {
     return null
   }
 

@@ -39,7 +39,10 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
           </div>
 
           <Button className="cursor-pointer justify-end rounded-3xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
-            <Link href="/noticias" className="flex items-center gap-2.5">
+            <Link
+              href={`/noticias/${siteId}`}
+              className="flex items-center gap-2.5"
+            >
               <span className="text-sm font-medium">Ver todas notícias</span>
               <SquareArrowOutUpRight />
             </Link>
@@ -48,7 +51,10 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
       )}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
-        <div className="group relative col-start-1 col-end-4 min-h-150 overflow-hidden rounded-3xl">
+        <Link
+          href={`/noticias/${siteId}/${highlight.uuid}`}
+          className="group relative col-start-1 col-end-4 min-h-150 overflow-hidden rounded-3xl"
+        >
           <Image
             src={url}
             alt={highlight.titulo}
@@ -65,18 +71,14 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
             <h3 className="mb-2 text-2xl leading-tight font-bold md:text-3xl">
               {highlight.titulo}
             </h3>
-
             <p className="truncate">{highlight.conteudo}</p>
 
-            <Link
-              href={`/noticias/${siteId}/${highlight.uuid}`}
-              className="flex items-center gap-2 text-sm font-medium hover:underline"
-            >
-              Ler matéria completa
+            <div className="mt-5 flex items-center gap-2.5 hover:underline">
+              <p>Ler matéria completa</p>
               <span aria-hidden>→</span>
-            </Link>
+            </div>
           </div>
-        </div>
+        </Link>
 
         <div className="flex flex-col items-center justify-center gap-4">
           {rest.map((item) => (
