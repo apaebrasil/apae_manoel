@@ -3,6 +3,7 @@ import { Geist_Mono, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { DonationFloat } from "@/components/donation-float"
 import "../globals.css"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
@@ -31,7 +32,10 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+
         <Footer />
+
+        <DonationFloat />
       </body>
     </html>
   )

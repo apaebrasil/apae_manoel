@@ -23,7 +23,7 @@ export const ctaOptions: ctaOptionsItems[] = [
     description:
       "Sua contribuição transforma vidas e ajuda a manter nossos serviços para milhares de famílias.",
     icon: "heart",
-    href: "/doar",
+    href: "https://doeeajudeapaebrasil.com.br/",
     buttonText: "Doar Agora",
     variant: "default" as const,
   },
