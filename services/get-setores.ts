@@ -18,7 +18,9 @@ export async function getSetores({ idSite }: GetSetoresProps = {}): Promise<
 
   const data: Setor[] = await response.json()
 
-  if (!idSite) return data
+  if (!idSite) {
+    return data
+  }
 
   return data.filter((setor) => setor.idSite === idSite)
 }
