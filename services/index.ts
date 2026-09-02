@@ -3,6 +3,7 @@ import { getNews, getNewsHighlight, newsBySlug } from "./get-news"
 import { getSetores } from "./get-setores"
 import { getDocumentos } from "./get-documentos"
 import { getCategorias } from "./get-categorias"
+import { getSponsors, sponsorBySlug } from "./get-sponsors"
 
 export const fetch = {
   getInfoWebSite,
@@ -12,4 +13,6 @@ export const fetch = {
   getSetores,
   getDocumentos,
   getCategorias,
+  getSponsors,
+  sponsorBySlug,
 }

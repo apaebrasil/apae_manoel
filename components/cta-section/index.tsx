@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Card, CardContent } from "../ui/card"
-import { Button } from "../ui/button"
 import { ctaOptions } from "@/constants"
 import { DynamicIcon } from "lucide-react/dynamic"
 import { ArrowRight } from "lucide-react"
@@ -40,15 +39,14 @@ export function CTASection() {
               <p className="mb-6 text-pretty text-muted-foreground">
                 {option.description}
               </p>
-              <Button
-                variant={option.variant}
-                className="hover:text-whtie w-full bg-blue-800 text-white hover:bg-blue-700"
+
+              <Link
+                href={option.href}
+                className="hover:text-whtie flex w-full items-center justify-center rounded-lg bg-blue-800 px-5 py-3 text-white transition-colors duration-300 group-hover/btn:bg-blue-700 hover:bg-blue-700"
               >
-                <Link href={option.href} className="flex items-center">
-                  {option.buttonText}
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                </Link>
-              </Button>
+                {option.buttonText}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+              </Link>
             </CardContent>
           </Card>
         ))}

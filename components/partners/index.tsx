@@ -1,12 +1,15 @@
-import Image from "next/image"
 import { Handshake } from "lucide-react"
-import ParceiroImage from "@/public/logo-parceiros.jpg"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { PartnerCard } from "./partner-card"
-import { partners } from "@/constants/partners"
+import { Sponsor } from "@/types/sponsor-type"
 
-export function Partners() {
+interface PartnersProps {
+  siteId: number
+  sponsor: Sponsor[]
+}
+
+export function Partners({ siteId, sponsor }: PartnersProps) {
   return (
     <div className="container mx-auto space-y-12 px-4">
       <header className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
@@ -16,24 +19,16 @@ export function Partners() {
         <h2 className="text-3xl font-bold text-zinc-950 md:text-4xl">
           Parcerias que Fortalecem a Inclusão
         </h2>
-        <p className="text-pretty font-medium text-zinc-700">
-          Juntos transformamos vidas. A APAE Brasil se une a empresas e
-          pessoas comprometidas com a autonomia, a defesa de direitos e o
+        <p className="font-medium text-pretty text-zinc-700">
+          Juntos transformamos vidas. A APAE Brasil se une a empresas e pessoas
+          comprometidas com a autonomia, a defesa de direitos e o
           desenvolvimento de pessoas com deficiência intelectual e múltipla.
         </p>
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-stretch">
         <div className="relative isolate flex flex-col justify-between overflow-hidden rounded-3xl bg-blue-950 p-8 text-white md:p-10">
-          <Image
-            src={ParceiroImage}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="500px"
-            className="-z-10 object-cover opacity-10"
-          />
-          <div className="-z-10 absolute inset-0 bg-linear-to-br from-blue-950 via-blue-950/95 to-blue-900/90" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-br from-blue-950 via-blue-950/95 to-blue-900/90" />
 
           <div className="space-y-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10">
@@ -66,8 +61,12 @@ export function Partners() {
             aria-label="Empresas parceiras"
             className="flex flex-wrap content-start gap-5"
           >
-            {partners.map((partner, index) => (
-              <PartnerCard key={partner.name} partner={partner} index={index} />
+            {sponsor.map((partner) => (
+              <PartnerCard
+                key={partner.uuid}
+                partner={partner}
+                siteId={siteId}
+              />
             ))}
           </div>
         </div>

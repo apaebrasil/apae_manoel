@@ -8,16 +8,11 @@ import { SectionWrapper } from "@/components/section"
 import { ServiceSection } from "@/components/service-section"
 import { fetch } from "@/services"
 
-// interface PageParams {
-//   searchParams: { id: string }
-// }
-
 export default async function Page() {
   const response = await fetch.getInfoWebSite({
     domain: "apaebrasil.org.br",
   })
 
-  console.log("site: ", response)
   return (
     <main>
       <SectionWrapper
@@ -37,7 +32,7 @@ export default async function Page() {
           <News
             noticias={response.noticias}
             isShowHeaderNews={true}
-            siteId={String(response.id)}
+            siteId={response.id}
           />
         </SectionWrapper>
       )}
@@ -79,7 +74,7 @@ export default async function Page() {
         className="bg-blue-50 px-5 py-16 md:py-24"
         aria-labelledby="contact-me-location"
       >
-        <Partners />
+        <Partners siteId={response.id} sponsor={response.parceiros} />
       </SectionWrapper>
     </main>
   )

@@ -69,7 +69,7 @@ export async function getNews({
   if (titulo) {
     url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&titulo=${titulo}&pagina=${page}&tamanho=${limit}`
   }
-  console.log("URL final:", url)
+
   const response = await fetch(url)
   if (!response.ok) {
     throw new Error("Erro ao fazer requisiçaõ das notícias")

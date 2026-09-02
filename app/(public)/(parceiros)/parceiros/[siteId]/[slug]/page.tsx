@@ -1,12 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import Nuvem from "@/public/nuvem.png"
 import { SectionWrapper } from "@/components/section"
 import { ArrowLeft, SquareArrowOutUpRight } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
+import { fetch } from "@/services"
 
-export default function Page() {
+interface PageProps {
+  params: Promise<{ siteId: string; slug: string }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params
+
+  const responseSuponsor = await fetch.sponsorBySlug({ id: slug })
+
   return (
     <main className="container mx-auto max-w-7xl">
       <SectionWrapper className="w-full px-8 py-14">
@@ -20,24 +28,21 @@ export default function Page() {
 
         <div className="pt-16 pb-11">
           <h1 className="mt-4 mb-5 text-6xl font-normal text-blue-950 lg:text-9xl">
-            Nuvem
+            {responseSuponsor.nome}
           </h1>
-          <p className="max-w-lg text-justify text-base font-normal text-black lg:text-3xl">
-            Infraestrutura que transforma boas ideias em experiências
-            confiáveis.
-          </p>
         </div>
 
         <Image
-          src={Nuvem}
+          src={responseSuponsor.logo_url}
           alt="nuvem"
-          className="block aspect-video w-full rounded-md object-cover shadow-2xl"
-
+          className="block aspect-video w-full rounded-md object-contain shadow-2xl"
+          width={500}
+          height={500}
           quality={100}
         />
       </SectionWrapper>
 
-      <SectionWrapper className="grid grid-cols-1 gap-24 p-20 lg:grid-cols-2">
+      <SectionWrapper className="space-y-10 p-20 lg:grid-cols-2">
         <div>
           <span className="mb-6 block text-xs font-bold text-blue-300">
             A história por trás
@@ -49,20 +54,19 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col space-y-10">
-          <p className="text-justify text-base font-normal text-zinc-700 lg:text-lg">
-            A Nuvem chegou até nós com uma missão clara: traduzir sua expertise
-            técnica em uma marca mais humana. Juntos, criamos uma plataforma
-            editorial que aproxima times de produto e pessoas.
+          <p className="text-justify text-base leading-relaxed font-normal text-zinc-700 lg:text-lg">
+            {responseSuponsor.descricao}
           </p>
 
           <Separator className="bg-blue-200" />
 
           <Link
-            href="/"
+            href={responseSuponsor.link ? responseSuponsor.link : "#"}
+            target="_blank"
             className="ml-auto inline-flex w-fit flex-col items-center gap-2.5 rounded-md px-6 py-3 text-center text-xs font-normal"
           >
             <div className="flex items-center gap-2">
-              <span>Conheça a Nuvem</span>
+              <span>Conheça {responseSuponsor.nome}</span>
               <SquareArrowOutUpRight size={12} />
             </div>
             <Separator className="w-fit bg-black" />

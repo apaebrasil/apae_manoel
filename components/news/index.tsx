@@ -7,7 +7,7 @@ import { Noticies } from "./type"
 interface NewsProps {
   noticias: Noticies[]
   isShowHeaderNews: boolean
-  siteId: string
+  siteId: number
 }
 
 export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
