@@ -32,7 +32,7 @@ export function NavMenuItem({ navLink, siteId }: NavMenuItemProps) {
         <NavigationMenuLink
           render={
             <Link
-              href={`${navLink.link}/${siteId}`}
+              href={isInternLink ? `${navLink.link}/${siteId}` : navLink.link}
               target={isInternLink ? "" : "_blank"}
             />
           }
