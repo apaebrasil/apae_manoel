@@ -66,7 +66,11 @@ export default async function Page() {
         className="bg-blue-950 px-5 py-16 md:py-24"
         aria-labelledby="contact-me-heading"
       >
-        <ContactMe />
+        <ContactMe
+          email={response.email}
+          endereco={response.endereco}
+          telefone={response.telefone}
+        />
       </SectionWrapper>
 
       <SectionWrapper

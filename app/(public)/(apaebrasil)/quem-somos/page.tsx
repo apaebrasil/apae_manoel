@@ -3,8 +3,13 @@ import { DynamicIcon } from "lucide-react/dynamic"
 import { SectionWrapper } from "@/components/section"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { aboutInfo, aboutValues, historyMilestones } from "@/constants"
+import { fetch } from "@/services"
 
-export default function Page() {
+export default async function Page() {
+  const response = await fetch.getInfoWebSite({
+    domain: "apaebrasil.org.br",
+  })
+
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <div className="container mx-auto">
@@ -24,9 +29,7 @@ export default function Page() {
               </h1>
 
               <p className="max-w-2xl text-base font-normal text-blue-900/80">
-                Há mais de 70 anos transformando vidas e construindo uma
-                sociedade mais inclusiva para pessoas com deficiência
-                intelectual e múltipla.
+                {response.quem_somos}
               </p>
             </div>
           </header>
@@ -40,31 +43,11 @@ export default function Page() {
               </span>
 
               <h2 className="mt-2 mb-6 text-2xl font-bold text-blue-950 sm:text-3xl">
-                Uma trajetória de luta e conquistas
+                {response.historia_titulo}
               </h2>
 
               <div className="space-y-4 text-justify text-base leading-relaxed text-blue-900/80">
-                <p>
-                  A APAE - Associação de Pais e Amigos dos Excepcionais é uma
-                  organização social cujo objetivo principal é promover a
-                  atenção integral à pessoa com deficiência intelectual e
-                  múltipla.
-                </p>
-
-                <p>
-                  Fundada em 1954 no Rio de Janeiro, a partir da iniciativa de
-                  pais, técnicos e amigos que buscavam garantir os direitos e a
-                  inclusão social de seus filhos, a Apae cresceu e se consolidou
-                  como a maior rede de promoção e defesa dos direitos das
-                  pessoas com deficiência do Brasil.
-                </p>
-
-                <p>
-                  Hoje, com mais de 2.200 unidades espalhadas por todo o país,
-                  atendemos milhares de pessoas diariamente, oferecendo serviços
-                  nas áreas de educação, saúde, assistência social e defesa de
-                  direitos.
-                </p>
+                <p>{response.historia_conteudo}</p>
               </div>
             </div>
 

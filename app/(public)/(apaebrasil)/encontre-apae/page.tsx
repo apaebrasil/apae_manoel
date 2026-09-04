@@ -1,6 +1,6 @@
 "use client"
 import dynamic from "next/dynamic"
-import { ApaeLocation, ApaeMap } from "@/components/map"
+import { ApaeLocation } from "@/components/map"
 import { SectionWrapper } from "@/components/section"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"

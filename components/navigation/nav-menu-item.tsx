@@ -20,7 +20,7 @@ const triggerStyles =
 
 export function NavMenuItem({ navLink, siteId }: NavMenuItemProps) {
   const hasSubItems = navLink.submenus.length > 0
-  const hasLinkExternal = navLink.interno
+  const isInternLink = navLink.interno
 
   return (
     <NavigationMenuItem className="static">
@@ -32,8 +32,8 @@ export function NavMenuItem({ navLink, siteId }: NavMenuItemProps) {
         <NavigationMenuLink
           render={
             <Link
-              href={navLink.link}
-              target={hasLinkExternal ? "_blank" : ""}
+              href={`${navLink.link}/${siteId}`}
+              target={isInternLink ? "" : "_blank"}
             />
           }
           className={cn(

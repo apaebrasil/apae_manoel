@@ -44,7 +44,7 @@ export default async function Page({ params }: PageProps) {
 
       <SectionWrapper className="space-y-10 p-20 lg:grid-cols-2">
         <div>
-          <span className="mb-6 block text-xs font-bold text-blue-300">
+          <span className="mb-6 block text-sm font-bold text-blue-400 uppercase">
             A história por trás
           </span>
 

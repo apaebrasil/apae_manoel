@@ -11,7 +11,7 @@ export function ServiceSection() {
             Nossos Serviços
           </Badge>
           <h2 className="text-3xl font-bold text-zinc-950 md:text-5xl">
-            Atendimento Integral
+            Atendimento Integrado
           </h2>
           <p className="max-w-2xl text-center font-medium text-zinc-800 lg:text-[18px]">
             Oferecemos atendimento especializado em diversas areas para garantir

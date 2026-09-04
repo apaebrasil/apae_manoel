@@ -26,13 +26,27 @@ interface ResponseWebsiteInfo {
   noticias: Noticies[]
   categorias: CategoriaTransparencia[]
   parceiros: Sponsor[]
+  banner_json: {
+    url: string
+  }[]
+
+  logo1_url: string
+  logo2_url: string
+
+  quem_somos: string
+  historia_titulo: string
+  historia_conteudo: string
+  missao: string
+  unidades: number
+  atendidos: number
 }
 
 export async function getInfoWebSite({
   domain,
 }: QueryParams): Promise<ResponseWebsiteInfo> {
   const websiteInfo = await fetch(
-    `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`
+    `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`,
+    { next: { revalidate: 60 } }
   )
 
   if (!websiteInfo.ok) {

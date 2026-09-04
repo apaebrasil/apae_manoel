@@ -1,7 +1,13 @@
 import { Mail, MapPin, Phone, Send } from "lucide-react"
 import { Button } from "../ui/button"
 
-export function ContactMe() {
+interface ContactMeProps {
+  email: string
+  telefone: string
+  endereco: string
+}
+
+export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
   return (
     <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
       <header className="space-y-5">
@@ -22,9 +28,7 @@ export function ContactMe() {
               <p className="text-sm font-bold text-white">
                 E-mail institucional
               </p>
-              <p className="text-sm font-medium text-zinc-300">
-                contato@fenapaes.org.br
-              </p>
+              <p className="text-sm font-medium text-zinc-300">{email}</p>
             </div>
           </div>
 
@@ -34,9 +38,7 @@ export function ContactMe() {
             </div>
             <div>
               <p className="text-sm font-bold text-white">Central FENAPAES</p>
-              <p className="text-sm font-medium text-zinc-300">
-                (61) 3222-1234
-              </p>
+              <p className="text-sm font-medium text-zinc-300">{telefone}</p>
             </div>
           </div>
 
@@ -46,9 +48,7 @@ export function ContactMe() {
             </div>
             <div>
               <p className="text-sm font-bold text-white">Onde estamos</p>
-              <p className="text-sm font-medium text-zinc-300">
-                DS Ed. Venâncio V, Bloco A, Sala 409 Brasília - DF, 70393-900
-              </p>
+              <p className="text-sm font-medium text-zinc-300">{endereco}</p>
             </div>
           </div>
         </div>

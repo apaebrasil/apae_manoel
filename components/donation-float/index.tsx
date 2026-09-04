@@ -31,7 +31,7 @@ export function DonationFloat() {
       aria-label="Convite de doação"
     >
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/15">
-        <div className="flex items-center gap-3 bg-blue-500 px-4 py-3 text-primary-foreground">
+        <div className="flex items-center gap-3 bg-blue-900 px-4 py-3 text-primary-foreground">
           <span
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15 text-lg"
             aria-hidden="true"
