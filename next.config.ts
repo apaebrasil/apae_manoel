@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
       new URL("https://apae-cms.s3.us-east-1.amazonaws.com/**"),
     ],
   },
+  experimental: {
+    globalNotFound: true,
+  },
 }
 
 export default nextConfig

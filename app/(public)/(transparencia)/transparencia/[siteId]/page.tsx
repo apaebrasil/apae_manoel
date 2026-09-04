@@ -13,6 +13,7 @@ export default async function Page({ params }: PageProps) {
     fetch.getCategorias({ siteId: Number(siteId) }),
     fetch.getDocumentos(),
   ])
+  console.log("categorias: ", categorias, "documentos: ", documentos)
   const categoriasOrdenadas = categorias.toSorted((a, b) => a.ordem - b.ordem)
 
   const contagemPorCategoria = new Map<number, number>()

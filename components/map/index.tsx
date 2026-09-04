@@ -49,7 +49,7 @@ export function ApaeMap({
         zoom={13}
         scrollWheelZoom={false}
         zoomControl={false}
-        className="apae-map"
+        className="apae-map z-10"
         style={{ height: "500px", width: "100%" }}
       >
         <TileLayer

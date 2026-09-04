@@ -5,19 +5,15 @@ import { SectionWrapper } from "@/components/section"
 import Image from "next/image"
 import Teste from "@public/lideranca-apae.png"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  ArrowLeft,
-  ArrowRight,
-  Book,
-  BookOpen,
-  Calendar,
-  Landmark,
-  Users2,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ArrowRight, BookOpen, Calendar, Users2 } from "lucide-react"
 import Link from "next/link"
 
-export default function Page() {
+interface PageProps {
+  params: Promise<{ siteId: string }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { siteId } = await params
   return (
     <div>
       <Head>
@@ -90,7 +86,7 @@ export default function Page() {
                 </p>
 
                 <Link
-                  href="/"
+                  href={`/institucional/${siteId}/pdde`}
                   className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
                 >
                   <span>Conheço esta área</span>

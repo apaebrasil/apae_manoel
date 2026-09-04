@@ -47,12 +47,12 @@ const MOCK_HERO_BANNERS: HeroBanner[] = [
     title: "Sua Doação Transforma Vidas",
     description:
       "Apoie nossa causa e garanta atendimento especializado em saúde, educação e assistência social para milhares de famílias.",
-    imageUrl: "/doacao.jpg", // Recomenda-se uma foto de atendimento/família
+    imageUrl: "/doe e ajude.jpg", // Recomenda-se uma foto de atendimento/família
     imagePosition: "center",
     badge: "Como Ajudar",
     tagText: "100% Transparente",
     ctaText: "Fazer uma Doação",
-    ctaUrl: "/doe",
+    ctaUrl: "https://doeeajudeapaebrasil.com.br/",
   },
   {
     id: "banner-3",
@@ -137,6 +137,7 @@ export function HeroCarousel() {
                       </p>
                       <Link
                         href={item.ctaUrl}
+                        target="_blank"
                         className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/30 transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                       >
                         {item.ctaText}
