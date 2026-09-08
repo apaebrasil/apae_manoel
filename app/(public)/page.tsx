@@ -23,7 +23,7 @@ export default async function Page() {
         <HeroSection />
       </SectionWrapper>
 
-      {response.noticias.length > 0 && (
+      {response.noticias.filter((news) => news.destaque).length > 0 && (
         <SectionWrapper
           id="news"
           className="relative flex min-h-screen items-center overflow-hidden py-16 md:py-24"

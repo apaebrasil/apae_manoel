@@ -45,8 +45,7 @@ export async function getInfoWebSite({
   domain,
 }: QueryParams): Promise<ResponseWebsiteInfo> {
   const websiteInfo = await fetch(
-    `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`,
-    { next: { revalidate: 60 } }
+    `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`
   )
 
   if (!websiteInfo.ok) {

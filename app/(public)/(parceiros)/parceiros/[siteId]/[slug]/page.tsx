@@ -39,6 +39,7 @@ export default async function Page({ params }: PageProps) {
           width={500}
           height={500}
           quality={100}
+          title={responseSuponsor.nome}
         />
       </SectionWrapper>
 
@@ -63,7 +64,7 @@ export default async function Page({ params }: PageProps) {
           <Link
             href={responseSuponsor.link ? responseSuponsor.link : "#"}
             target="_blank"
-            className="ml-auto inline-flex w-fit flex-col items-center gap-2.5 rounded-md px-6 py-3 text-center text-xs font-normal"
+            className="ml-auto inline-flex w-fit flex-col items-center gap-2.5 rounded-md px-6 py-3 text-center text-xs font-semibold"
           >
             <div className="flex items-center gap-2">
               <span>Conheça {responseSuponsor.nome}</span>

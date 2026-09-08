@@ -1,5 +1,10 @@
+"use client"
+
 import { Mail, MapPin, Phone, Send } from "lucide-react"
 import { Button } from "../ui/button"
+import { FormState, sendMail } from "@/app/actions"
+import { useActionState, useEffect } from "react"
+import { toast } from "../ui/toast"
 
 interface ContactMeProps {
   email: string
@@ -8,6 +13,21 @@ interface ContactMeProps {
 }
 
 export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
+  const [state, formAction, isPending] = useActionState<FormState, FormData>(
+    sendMail,
+    null
+  )
+
+  useEffect(() => {
+    if (!isPending && state?.success) {
+      toast.add({
+        type: "success",
+        title: "Mensagem enviada com sucesso!",
+        description: "Recebemos sua dúvida e responderemos em breve.",
+      })
+    }
+  }, [isPending, state])
+
   return (
     <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
       <header className="space-y-5">
@@ -70,25 +90,35 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
           </p>
         </header>
 
-        <form action="" className="mt-5 flex flex-col gap-5">
+        <form action={formAction} className="mt-5 flex flex-col gap-5">
           <div className="flex flex-col gap-5 lg:flex-row">
             <div className="flex flex-1 flex-col gap-2">
-              <label htmlFor="" className="text-sm font-semibold text-white">
+              <label
+                htmlFor="user_name"
+                className="text-sm font-semibold text-white"
+              >
                 Nome completo
               </label>
               <input
                 type="text"
+                name="user_name"
+                id="user_name"
                 placeholder="Seu nome"
                 className="rounded-md border border-blue-300 bg-blue-900/25 px-4 py-2.5 text-base font-medium text-white outline-none"
               />
             </div>
 
             <div className="flex flex-1 flex-col gap-2">
-              <label htmlFor="" className="text-sm font-semibold text-white">
+              <label
+                htmlFor="user_mail"
+                className="text-sm font-semibold text-white"
+              >
                 E-mail
               </label>
               <input
                 type="email"
+                name="user_mail"
+                id="user_mail"
                 placeholder="voce@exemple.com"
                 className="rounded-md border border-blue-300 bg-blue-900/25 px-4 py-2.5 text-base font-medium text-white outline-none"
               />
@@ -100,6 +130,8 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
               Menssagem
             </label>
             <textarea
+              name="user_question"
+              id="user_question"
               placeholder="Escreva sua mensagem aqui...."
               className="h-52 resize-none rounded-md border border-blue-300 bg-blue-900/25 px-4 py-2.5 text-base font-medium text-white outline-none"
             />

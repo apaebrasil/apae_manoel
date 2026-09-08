@@ -18,6 +18,19 @@ interface DateDetails {
 type CreatedAt = DateDetails
 type UpdatedAt = DateDetails
 
+export interface NewsContent {
+  id: string
+  data: {
+    text: string
+    level: number
+    file: {
+      url: string
+    }
+    caption: string
+  }
+  type: "paragraph" | "image" | "header"
+}
+
 export interface GetNewsData {
   id: number
   uuid: string
@@ -28,7 +41,7 @@ export interface GetNewsData {
   titulo: string
   pasta: number
   destaque: boolean
-  conteudo: string
+  conteudo_json: NewsContent[]
   documentid: number
   url: string
   criadoEm: CreatedAt

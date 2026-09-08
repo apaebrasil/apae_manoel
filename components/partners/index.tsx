@@ -1,5 +1,5 @@
-import { Handshake } from "lucide-react"
 import Link from "next/link"
+import { Handshake } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { PartnerCard } from "./partner-card"
 import { Sponsor } from "@/types/sponsor-type"
@@ -44,7 +44,10 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
             </p>
           </div>
 
-          <Link href="/parceiro" className="mt-8 inline-flex w-fit items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-950 hover:bg-blue-50">
+          <Link
+            href="/parceiro"
+            className="mt-8 inline-flex w-fit items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-950 hover:bg-blue-50"
+          >
             Quero ser parceiro
           </Link>
         </div>

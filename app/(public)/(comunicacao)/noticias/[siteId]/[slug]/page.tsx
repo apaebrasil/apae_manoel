@@ -4,6 +4,7 @@ import { ArrowLeft, CalendarDays, ImageOff, User2 } from "lucide-react"
 import { SectionWrapper } from "@/components/section"
 import { fetch } from "@/services"
 import { formatedDate } from "@/lib/formated-date"
+import { NewsContent } from "@/components/news/news-content"
 
 interface NewsParams {
   params: Promise<{ siteId: string; slug: string }>
@@ -12,11 +13,6 @@ interface NewsParams {
 export default async function Page({ params }: NewsParams) {
   const { siteId, slug } = await params
   const news = await fetch.newsBySlug({ id: slug })
-
-  const paragraphs = news.conteudo
-    .split("\n")
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean)
 
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
@@ -64,24 +60,19 @@ export default async function Page({ params }: NewsParams) {
                 sizes="(max-width: 768px) 100vw, 768px"
                 className="object-cover"
                 priority
+                title={news.titulo}
               />
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-blue-900/40">
                 <ImageOff className="h-10 w-10" strokeWidth={1.5} />
-                <p className="text-sm font-medium">Imagem não encontrada</p>
+                <p className="text-center text-sm font-medium">
+                  Imagem {news.titulo}
+                </p>
               </div>
             )}
           </div>
 
-          <div className="mt-8 space-y-4 text-base leading-relaxed text-blue-950/80">
-            {paragraphs.length > 0 ? (
-              paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))
-            ) : (
-              <p>{news.conteudo}</p>
-            )}
-          </div>
+          <NewsContent newsContent={news.conteudo_json} />
 
           <div className="mt-10 border-t border-blue-900/10 pt-6">
             <Link

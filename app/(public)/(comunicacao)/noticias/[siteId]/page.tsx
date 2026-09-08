@@ -56,7 +56,7 @@ export default async function Page({ params, searchParams }: PageProps) {
   const totalPages = Math.ceil(
     responseNews.totalPaginas / responseNews.news.length
   )
-
+  console.log("newsData: ", responseNews, responseNews.news.length)
   async function removeFilter() {
     "use server"
     const params = new URLSearchParams(currentParams as Record<string, string>)
@@ -184,8 +184,13 @@ export default async function Page({ params, searchParams }: PageProps) {
       <SectionWrapper className="py-12 md:py-24">
         <div className="container mx-auto mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {newsData.map((news) => (
-            <Link key={news.uuid} href={`/noticias/${siteId}/${news.uuid}`}>
-              <Card className="group/card cursor-pointer gap-0 overflow-hidden rounded-2xl p-0 shadow-sm shadow-blue-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-950/10 hover:ring-blue-200">
+            <Link
+              key={news.uuid}
+              href={`/noticias/${siteId}/${news.uuid}`}
+              title={news.titulo}
+              className="flex h-full"
+            >
+              <Card className="group/card flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden rounded-2xl p-0 shadow-sm shadow-blue-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-950/10 hover:ring-blue-200">
                 <CardHeader className="relative h-56 w-full overflow-hidden p-0">
                   {news.url ? (
                     <>
