@@ -1,6 +1,6 @@
 import { Handshake } from "lucide-react"
+import Link from "next/link"
 import { Badge } from "../ui/badge"
-import { Button } from "../ui/button"
 import { PartnerCard } from "./partner-card"
 import { Sponsor } from "@/types/sponsor-type"
 
@@ -44,11 +44,9 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
             </p>
           </div>
 
-          <Button className="mt-8 w-fit bg-white text-blue-950 hover:bg-blue-50">
-            <a href="mailto:contato@fenapaes.org.br?subject=Quero%20ser%20parceiro%20da%20Apae%20Brasil">
-              Quero ser parceiro
-            </a>
-          </Button>
+          <Link href="/parceiro" className="mt-8 inline-flex w-fit items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium text-blue-950 hover:bg-blue-50">
+            Quero ser parceiro
+          </Link>
         </div>
 
         <div className="flex flex-col gap-6 rounded-3xl bg-blue-50 p-6 md:p-8">
