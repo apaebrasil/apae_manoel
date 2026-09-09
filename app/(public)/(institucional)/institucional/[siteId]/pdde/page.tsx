@@ -49,7 +49,7 @@ export default function Page() {
             <Separator orientation="horizontal" />
           </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Link href="/" className="group">
               <Card className="shadow-2xl transition-transform duration-300 group-hover:-translate-y-3">
                 <CardContent>

@@ -38,7 +38,7 @@ export default async function Page({ params }: PageProps) {
           className="block aspect-video w-full rounded-md object-contain shadow-2xl"
           width={500}
           height={500}
-          quality={100}
+          quality={75}
           title={responseSuponsor.nome}
         />
       </SectionWrapper>

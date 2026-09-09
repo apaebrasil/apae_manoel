@@ -24,21 +24,21 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
   return (
     <div className="container mx-auto space-y-5 px-4">
       {hasShowHeaderNews && (
-        <div className="mb-12 flex items-end justify-between">
+        <div className="mb-12 flex flex-col items-end justify-between lg:flex-row">
           <div>
             <h2
               id="news-heading"
-              className="md:text-4x l mb-4 text-3xl font-bold text-balance text-zinc-800"
+              className="mb-4 text-xl font-bold text-balance text-zinc-800 md:text-4xl lg:text-3xl"
             >
               Últimas notícias da Rede
             </h2>
-            <p className="mx-auto max-w-2xl text-lg text-pretty text-zinc-700">
+            <p className="mx-auto max-w-2xl text-justify text-base text-pretty text-zinc-700 lg:text-lg">
               Acompanhe os acontecimentos, eventos e conquistas do movimento em
               defesa dos direitos das pessoas com deficiência.
             </p>
           </div>
 
-          <Button className="cursor-pointer justify-end rounded-3xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+          <Button className="mt-10 cursor-pointer justify-end rounded-3xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
             <Link
               href={`/noticias/${siteId}`}
               className="flex items-center gap-2.5"
@@ -53,14 +53,14 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
         <Link
           href={`/noticias/${siteId}/${highlight.uuid}`}
-          className="group relative col-start-1 col-end-4 min-h-150 overflow-hidden rounded-3xl"
+          className="group relative col-start-1 col-end-4 overflow-hidden rounded-3xl min-h-96 lg:min-h-150"
         >
           <Image
             src={url}
             alt={highlight.titulo}
             fill
             sizes="500"
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="absolute inset-0 w-28 object-contain lg:object-cover transition-transform duration-300 group-hover:scale-105 lg:h-full lg:w-full"
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 

@@ -12,7 +12,7 @@ export default async function Page() {
   const response = await fetch.getInfoWebSite({
     domain: "apaebrasil.org.br",
   })
-
+  console.log("response: ", response)
   return (
     <main>
       <SectionWrapper

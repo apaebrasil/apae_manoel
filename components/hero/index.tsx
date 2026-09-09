@@ -5,7 +5,7 @@ export function HeroSection() {
   return (
     <>
       <div
-        className="panel bg-linera-to-b absolute inset-0 bg-linear-to-br from-sky-50 to-white"
+        className="panel bg-linera-to-b absolute inset-0 bg-linear-to-br from-sky-50 to-white mb-10"
         aria-hidden="true"
       />
 

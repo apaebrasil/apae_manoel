@@ -31,25 +31,27 @@ export default async function Page({ params }: PageProps) {
 
         <SectionWrapper className="py-10">
           <Card className="border border-blue-100 p-0 drop-shadow-2xl">
-            <CardContent className="grid grid-cols-[1fr_1.25fr] gap-10 p-0">
+            <CardContent className="grid grid-cols-1 gap-6 p-0 md:grid-cols-[1fr_1.25fr] md:gap-10">
               <div
                 role="banner"
-                className="gri relative flex h-140 w-full items-center justify-center overflow-hidden"
+                className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-t-xl md:h-auto md:min-h-140 md:rounded-none md:rounded-l-xl"
               >
                 <Image
                   src={Teste}
                   alt="Mariana Alves"
-                  className="h-full w-full object-cover md:h-full"
+                  className="h-full w-full object-cover"
                   priority
                 />
               </div>
 
-              <div role="contentinfo" className="p-12">
+              <div role="contentinfo" className="p-6 md:p-12">
                 <span className="mb-3 block text-xs font-semibold text-blue-300 uppercase">
                   Quem conduz esta frente
                 </span>
 
-                <h2 className="mb-5 text-3xl font-semibold">Mariana Alves</h2>
+                <h2 className="mb-5 text-2xl font-semibold md:text-3xl">
+                  Mariana Alves
+                </h2>
 
                 <p className="text-base leading-relaxed font-normal text-zinc-800">
                   Nossa atuação nasce do compromisso com a defesa de direitos, a
@@ -64,12 +66,12 @@ export default async function Page({ params }: PageProps) {
 
         <SectionWrapper className="py-10">
           <header className="flex items-center">
-            <h3 className="mb-8 text-3xl font-semibold text-blue-950">
+            <h3 className="mb-8 text-2xl font-semibold text-blue-950 md:text-3xl">
               Como trabalhamos
             </h3>
           </header>
 
-          <div className="flex items-center gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3">
               <CardContent>
                 <div className="w-fit rounded-full bg-blue-200 p-2.5">
@@ -126,7 +128,7 @@ export default async function Page({ params }: PageProps) {
               </CardContent>
             </Card>
 
-            <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3">
+            <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3 md:col-span-2 lg:col-span-1">
               <CardContent>
                 <div className="w-fit rounded-full bg-blue-200 p-2.5">
                   <Calendar size={20} className="font-bold text-blue-950" />

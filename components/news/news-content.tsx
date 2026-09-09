@@ -33,7 +33,7 @@ export function NewsContent({ newsContent }: NewsContentProps) {
               height={500}
               alt={content.data.caption}
               src={content.data.file.url}
-              quality={2500}
+              quality={75}
               className="h-fit w-full object-cover"
             />
           )}
