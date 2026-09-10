@@ -56,17 +56,17 @@ export default async function Page({ params, searchParams }: PageProps) {
   const totalPages = Math.ceil(
     responseNews.totalPaginas / responseNews.news.length
   )
-  console.log("newsData: ", responseNews, responseNews.news.length)
-  async function removeFilter() {
-    "use server"
-    const params = new URLSearchParams(currentParams as Record<string, string>)
-    params.delete("titulo")
 
-    const targetUrl = params.toString()
-      ? `/noticias?${params.toString()}`
-      : `/noticias/${siteId}`
-    redirect(targetUrl)
-  }
+  // async function removeFilter() {
+  //   "use server"
+  //   const params = new URLSearchParams(currentParams as Record<string, string>)
+  //   params.delete("titulo")
+
+  //   const targetUrl = params.toString()
+  //     ? `/noticias?${params.toString()}`
+  //     : `/noticias/${siteId}`
+  //   redirect(targetUrl)
+  // }
 
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
@@ -123,7 +123,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-1.5 lg:w-48">
+          {/* <div className="flex flex-col gap-1.5 lg:w-48">
             <label className="text-xs font-semibold text-blue-900/70 uppercase">
               Categoria
             </label>
@@ -138,7 +138,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                 <SelectItem value="evento">Evento</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </div> */}
 
           <div className="flex flex-col gap-1.5 lg:w-56">
             <label className="text-xs font-semibold text-blue-900/70 uppercase">
@@ -173,7 +173,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             </Button>
             <Link
               href={`/noticias/${siteId}`}
-              className="cursor-pointer lg:mb-0"
+              className="cursor-pointer rounded-lg border px-5 py-2 text-sm lg:mb-0"
             >
               Limpar filtro
             </Link>

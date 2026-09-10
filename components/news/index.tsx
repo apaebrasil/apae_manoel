@@ -53,14 +53,14 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
         <Link
           href={`/noticias/${siteId}/${highlight.uuid}`}
-          className="group relative col-start-1 col-end-4 overflow-hidden rounded-3xl min-h-96 lg:min-h-150"
+          className="group relative col-start-1 col-end-4 min-h-96 overflow-hidden rounded-3xl lg:min-h-150"
         >
           <Image
             src={url}
             alt={highlight.titulo}
             fill
             sizes="500"
-            className="absolute inset-0 w-28 object-contain lg:object-cover transition-transform duration-300 group-hover:scale-105 lg:h-full lg:w-full"
+            className="absolute inset-0 w-28 object-contain transition-transform duration-300 group-hover:scale-105 lg:h-full lg:w-full lg:object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
@@ -80,7 +80,7 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
           </div>
         </Link>
 
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-start gap-4">
           {rest.map((item) => (
             <Link
               key={item.id}
