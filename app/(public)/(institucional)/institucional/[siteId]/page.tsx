@@ -116,7 +116,7 @@ export default async function Page({ params }: PageProps) {
                 </p>
 
                 <Link
-                  href="/"
+                  href={`/institucional/${siteId}/articulacao`}
                   className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
                 >
                   <span>Conheço esta área</span>
@@ -144,7 +144,7 @@ export default async function Page({ params }: PageProps) {
                 </p>
 
                 <Link
-                  href="/"
+                  href={`/institucional/${siteId}/coordenadorias-tecnicas`}
                   className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
                 >
                   <span>Conheço esta área</span>
