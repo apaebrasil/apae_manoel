@@ -21,22 +21,26 @@ export async function Header() {
         role="navigation"
         aria-label="Navegacao principal"
       >
-        <div className="flex size-16 items-center justify-center rounded-full">
-          <Link href="/" className="flex items-center gap-5 text-sm">
+        <div className="flex items-center justify-center gap-1.5 rounded-full">
+          <Link href="/">
             <Image
               src={response.logo1_url}
               alt="Logo APAE"
               width={150}
               height={150}
-              className="object-contain"
+              className="h-auto w-20 object-contain"
+              title="Apae Braisl - Home"
             />
+          </Link>
 
+          <Link href="https://www.sgs.com/en/certified-clients-and-products/certified-client-directory">
             <Image
               src={response.logo2_url}
               alt="Logo SGQ"
               width={100}
               height={100}
-              className="object-contain"
+              className="h-auto w-12 object-contain"
+              title="Certified Client Directory"
             />
           </Link>
         </div>

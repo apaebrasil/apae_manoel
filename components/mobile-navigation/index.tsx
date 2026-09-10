@@ -23,9 +23,12 @@ export function MobileNavigation({
   return (
     <Drawer swipeDirection="right">
       <DrawerTrigger
-        className="z-50 flex md:hidden"
+        className="z-50 flex cursor-pointer md:hidden"
         render={
-          <Button variant="ghost" className="border-none bg-transparent" />
+          <Button
+            variant="ghost"
+            className="border-none bg-transparent hover:bg-transparent"
+          />
         }
       >
         <Menu size={32} className="text-lg text-white" aria-label="Menu" />
