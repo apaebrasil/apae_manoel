@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { DonationFloat } from "@/components/donation-float"
+import { AccessibilityMenu } from "@/components/accessibility-menu"
 import { Toaster } from "@/components/ui/toast"
 import "./globals.css"
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Footer />
 
         <DonationFloat />
+        <AccessibilityMenu />
         <Toaster />
       </body>
     </html>

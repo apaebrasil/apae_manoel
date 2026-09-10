@@ -146,3 +146,51 @@
     transform: translate(0, -20px);
   }
 }
+
+html {
+  font-size: calc(100% * var(--a11y-font-scale, 1));
+}
+
+.a11y-underline-links a {
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+.a11y-reduce-motion,
+.a11y-reduce-motion *,
+.a11y-reduce-motion *::before,
+.a11y-reduce-motion *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+.a11y-high-contrast {
+  --background: oklch(0 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.08 0 0);
+  --card-foreground: oklch(1 0 0);
+  --popover: oklch(0.08 0 0);
+  --popover-foreground: oklch(1 0 0);
+  --primary: oklch(0.92 0.19 98);
+  --primary-foreground: oklch(0 0 0);
+  --secondary: oklch(0.16 0 0);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.16 0 0);
+  --muted-foreground: oklch(0.85 0 0);
+  --accent: oklch(0.16 0 0);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.7 0.2 25);
+  --border: oklch(1 0 0 / 55%);
+  --input: oklch(1 0 0 / 30%);
+  --ring: oklch(0.92 0.19 98);
+}
+
+.a11y-high-contrast a {
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+.a11y-high-contrast img:not([data-a11y-icon]) {
+  filter: contrast(1.15) grayscale(0.2);
+}
