@@ -18,68 +18,6 @@ import { Noticies } from "../news/type"
 
 const AUTOPLAY_DELAY = 10000
 
-interface HeroBanner {
-  id: string
-  title: string
-  description: string
-  imageUrl: string
-  imagePosition?: string
-  badge: string
-  tagText: string
-  ctaText: string
-  ctaUrl: string
-}
-
-const MOCK_HERO_BANNERS: HeroBanner[] = [
-  {
-    id: "banner-1",
-    title: "Gestão e Compromisso com a Inclusão",
-    description:
-      "Diretoria Executiva e Conselho de Administração da Fenapaes reunidos em Brasília para planejar as ações e melhorias do ano.",
-    imageUrl: "/reuniao_gestor.jpg", // Dica: verifique se no seu projeto o nome é 'reuniao-gestor.jpg'
-    imagePosition: "center 20%",
-    badge: "Nossa Missão",
-    tagText: "Rede APAE Brasil",
-    ctaText: "Conheça Nossos Projetos",
-    ctaUrl: "/projetos",
-  },
-  {
-    id: "banner-2",
-    title: "Sua Doação Transforma Vidas",
-    description:
-      "Apoie nossa causa e garanta atendimento especializado em saúde, educação e assistência social para milhares de famílias.",
-    imageUrl: "/doe e ajude.jpg", // Recomenda-se uma foto de atendimento/família
-    imagePosition: "center",
-    badge: "Como Ajudar",
-    tagText: "100% Transparente",
-    ctaText: "Fazer uma Doação",
-    ctaUrl: "https://doeeajudeapaebrasil.com.br/",
-  },
-  {
-    id: "banner-3",
-    title: "XXVIII Congresso Nacional das APAEs",
-    description:
-      "Participe do maior evento de inclusão, acessibilidade e direitos da pessoa com deficiência do Brasil. Garanta sua vaga!",
-    imageUrl: "/congresso.jpg", // Recomenda-se uma foto do evento/palco
-    imagePosition: "center",
-    badge: "Evento em Destaque",
-    tagText: "Inscrições Abertas",
-    ctaText: "Garantir Minha Vaga",
-    ctaUrl: "https://congresso.apaebrasil.org.br/inscricao",
-  },
-  {
-    id: "banner-4",
-    title: "Seja Voluntário na APAE",
-    description:
-      "Doe seu tempo, talento e afeto. Descubra como contribuir ativamente na unidade mais próxima da sua cidade.",
-    imageUrl: "/voluntario.jpg", // Recomenda-se uma foto de voluntários em ação
-    imagePosition: "center",
-    badge: "Participe",
-    tagText: "Junte-se à Rede",
-    ctaText: "Quero Ajudar",
-    ctaUrl: "/voluntario",
-  },
-]
 interface HeroCarouselProps {
   noticias: Noticies[]
   siteId: number
@@ -103,7 +41,6 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
     }
   }, [api])
 
-  const total = MOCK_HERO_BANNERS.length
   return (
     <div
       className="w-full bg-linear-to-b from-blue-50/20 to-blue-100/10"
@@ -186,7 +123,6 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
         <div className="flex items-center justify-between gap-6">
           <span className="hidden text-xs font-medium tracking-wide text-blue-950/50 tabular-nums sm:block">
             {String(selected + 1).padStart(2, "0")} —{" "}
-            {String(total).padStart(2, "0")}
           </span>
 
           <div className="flex flex-1 items-center justify-center gap-3 sm:justify-start">
