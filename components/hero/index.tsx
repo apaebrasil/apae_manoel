@@ -4,9 +4,10 @@ import { HeroCarousel } from "./hero-carousel"
 
 interface HeroSection {
   noticias: Noticies[]
+  siteId: number
 }
 
-export function HeroSection({ noticias }: HeroSection) {
+export function HeroSection({ noticias, siteId }: HeroSection) {
   return (
     <>
       <div
@@ -23,7 +24,7 @@ export function HeroSection({ noticias }: HeroSection) {
       <GridBackgroundHero />
 
       <div className="relative z-10 h-screen w-full">
-        <HeroCarousel noticias={noticias} />
+        <HeroCarousel noticias={noticias} siteId={siteId} />
       </div>
     </>
   )

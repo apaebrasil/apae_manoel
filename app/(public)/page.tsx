@@ -22,7 +22,7 @@ export default async function Page() {
         className="swipe-section relative flex min-h-screen items-center overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        <HeroSection noticias={camping} />
+        <HeroSection siteId={response.id} noticias={camping} />
       </SectionWrapper>
 
       {response.noticias.filter((news) => news.destaque).length > 0 && (

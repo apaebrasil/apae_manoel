@@ -82,9 +82,10 @@ const MOCK_HERO_BANNERS: HeroBanner[] = [
 ]
 interface HeroCarouselProps {
   noticias: Noticies[]
+  siteId: number
 }
 
-export function HeroCarousel({ noticias }: HeroCarouselProps) {
+export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
   const plugin = useMemo(() => {
     return Autoplay({ delay: AUTOPLAY_DELAY, stopOnInteraction: false })
   }, [])
@@ -139,7 +140,7 @@ export function HeroCarousel({ noticias }: HeroCarouselProps) {
                         {item.descricao}
                       </p>
                       <Link
-                        href={item.url}
+                        href={`/noticias/${siteId}/${item.uuid}`}
                         target="_blank"
                         className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/30 transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                       >
