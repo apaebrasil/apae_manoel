@@ -36,4 +36,6 @@ export interface Noticies {
   atualizadoEm: UpdatedAt
   atualizadoPor: string
   sitesIds: string
+  tipo: string
+  descricao: string
 }

@@ -1,12 +1,12 @@
 import Head from "next/head"
 
+import Image from "next/image"
+import Link from "next/link"
 import { SectionHeader } from "@/components/common/section-header"
 import { SectionWrapper } from "@/components/section"
-import Image from "next/image"
-import Teste from "@public/lideranca-apae.png"
+import Teste from "@public/36626dfb-c82e-4f8e-896e-62c6b10ea425.png"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, BookOpen, Calendar, Users2 } from "lucide-react"
-import Link from "next/link"
 
 interface PageProps {
   params: Promise<{ siteId: string }>
@@ -50,7 +50,7 @@ export default async function Page({ params }: PageProps) {
                 </span>
 
                 <h2 className="mb-5 text-2xl font-semibold md:text-3xl">
-                  Mariana Alves
+                  José Marcos Cardoso do Carmo
                 </h2>
 
                 <p className="text-base leading-relaxed font-normal text-zinc-800">

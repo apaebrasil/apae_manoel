@@ -1,11 +1,16 @@
+import { Noticies } from "../news/type"
 import { GridBackgroundHero } from "./grid-background-hero"
 import { HeroCarousel } from "./hero-carousel"
 
-export function HeroSection() {
+interface HeroSection {
+  noticias: Noticies[]
+}
+
+export function HeroSection({ noticias }: HeroSection) {
   return (
     <>
       <div
-        className="panel bg-linera-to-b absolute inset-0 bg-linear-to-br from-sky-50 to-white mb-10"
+        className="panel bg-linera-to-b absolute inset-0 mb-10 bg-linear-to-br from-sky-50 to-white"
         aria-hidden="true"
       />
 
@@ -18,7 +23,7 @@ export function HeroSection() {
       <GridBackgroundHero />
 
       <div className="relative z-10 h-screen w-full">
-        <HeroCarousel />
+        <HeroCarousel noticias={noticias} />
       </div>
     </>
   )

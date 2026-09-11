@@ -12,7 +12,9 @@ export default async function Page() {
   const response = await fetch.getInfoWebSite({
     domain: "apaebrasil.org.br",
   })
-  console.log("response: ", response)
+
+  const camping = response.noticias.filter((item) => item.tipo === "Campanha")
+
   return (
     <main>
       <SectionWrapper
@@ -20,7 +22,7 @@ export default async function Page() {
         className="swipe-section relative flex min-h-screen items-center overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        <HeroSection />
+        <HeroSection noticias={camping} />
       </SectionWrapper>
 
       {response.noticias.filter((news) => news.destaque).length > 0 && (

@@ -14,6 +14,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
+import { Noticies } from "../news/type"
 
 const AUTOPLAY_DELAY = 10000
 
@@ -64,7 +65,7 @@ const MOCK_HERO_BANNERS: HeroBanner[] = [
     badge: "Evento em Destaque",
     tagText: "Inscrições Abertas",
     ctaText: "Garantir Minha Vaga",
-    ctaUrl: "/eventos/congresso-nacional",
+    ctaUrl: "https://congresso.apaebrasil.org.br/inscricao",
   },
   {
     id: "banner-4",
@@ -76,11 +77,14 @@ const MOCK_HERO_BANNERS: HeroBanner[] = [
     badge: "Participe",
     tagText: "Junte-se à Rede",
     ctaText: "Quero Ajudar",
-    ctaUrl: "/voluntariado",
+    ctaUrl: "/voluntario",
   },
 ]
+interface HeroCarouselProps {
+  noticias: Noticies[]
+}
 
-export function HeroCarousel() {
+export function HeroCarousel({ noticias }: HeroCarouselProps) {
   const plugin = useMemo(() => {
     return Autoplay({ delay: AUTOPLAY_DELAY, stopOnInteraction: false })
   }, [])
@@ -99,7 +103,6 @@ export function HeroCarousel() {
   }, [api])
 
   const total = MOCK_HERO_BANNERS.length
-
   return (
     <div
       className="w-full bg-linear-to-b from-blue-50/20 to-blue-100/10"
@@ -114,7 +117,7 @@ export function HeroCarousel() {
           className="w-full"
         >
           <CarouselContent className="ml-0">
-            {MOCK_HERO_BANNERS.map((item, index) => (
+            {noticias.map((item, index) => (
               <CarouselItem key={item.id} className="basis-full pl-0">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
                   <div className="relative order-2 lg:order-1 lg:col-span-5">
@@ -127,20 +130,20 @@ export function HeroCarousel() {
 
                     <div className="relative">
                       <p className="text-xs font-semibold tracking-[0.2em] text-blue-600 uppercase">
-                        {item.badge}
+                        {item.categoria}
                       </p>
                       <h2 className="mt-4 text-4xl leading-[0.98] font-bold tracking-tight text-blue-950 sm:text-5xl lg:text-[3.4rem]">
-                        {item.title}
+                        {item.titulo}
                       </h2>
                       <p className="mt-5 max-w-sm text-base leading-relaxed text-blue-950/60">
-                        {item.description}
+                        {item.descricao}
                       </p>
                       <Link
-                        href={item.ctaUrl}
+                        href={item.url}
                         target="_blank"
                         className="mt-8 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-blue-600/30 transition-colors hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                       >
-                        {item.ctaText}
+                        Visualizar campanha
                         <ArrowRight className="h-4 w-4" />
                       </Link>
                     </div>
@@ -154,12 +157,11 @@ export function HeroCarousel() {
                       />
                       <div className="relative h-75 w-full cursor-pointer overflow-hidden rounded-2xl bg-blue-950/5 sm:h-100 lg:h-120">
                         <Image
-                          src={item.imageUrl}
-                          alt={item.title}
+                          src={item.url}
+                          alt={item.titulo}
                           fill
                           priority={index === 0}
                           sizes="(min-width: 1024px) 58vw, 100vw"
-                          style={{ objectPosition: item.imagePosition }}
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -167,7 +169,7 @@ export function HeroCarousel() {
 
                       <div className="absolute -bottom-5 left-6 flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-[0_8px_24px_-4px_rgba(23,37,84,0.18)] sm:left-8">
                         <span className="text-xs font-semibold text-blue-950">
-                          {item.tagText}
+                          {item.categoria}
                         </span>
                       </div>
                     </div>
@@ -187,14 +189,14 @@ export function HeroCarousel() {
           </span>
 
           <div className="flex flex-1 items-center justify-center gap-3 sm:justify-start">
-            {MOCK_HERO_BANNERS.map((item, index) => {
+            {noticias.map((item, index) => {
               const isActive = index === selected
               return (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => api?.scrollTo(index)}
-                  aria-label={`Ir para o slide ${index + 1}: ${item.title}`}
+                  aria-label={`Ir para o slide ${index + 1}: ${item.titulo}`}
                   aria-current={isActive}
                   className="group/thumb flex flex-col gap-1.5"
                 >
@@ -207,11 +209,10 @@ export function HeroCarousel() {
                     )}
                   >
                     <Image
-                      src={item.imageUrl}
+                      src={item.url}
                       alt=""
                       fill
                       sizes="80px"
-                      style={{ objectPosition: item.imagePosition }}
                       className="object-cover transition-transform duration-500 group-hover/thumb:scale-110"
                     />
                     {isActive && (
