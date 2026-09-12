@@ -1,12 +1,13 @@
 import Head from "next/head"
 
-import Image from "next/image"
-import Link from "next/link"
 import { SectionHeader } from "@/components/common/section-header"
+import { SectionEyebrow } from "@/components/common/section-eyebrow"
+import { IconFeatureCard } from "@/components/common/icon-feature-card"
+import { ProfileCard } from "@/components/common/profile-card"
 import { SectionWrapper } from "@/components/section"
+import { Separator } from "@/components/ui/separator"
 import Teste from "@public/36626dfb-c82e-4f8e-896e-62c6b10ea425.png"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, BookOpen, Calendar, Users2 } from "lucide-react"
+import { BookOpen, Calendar, Users2 } from "lucide-react"
 
 interface PageProps {
   params: Promise<{ siteId: string }>
@@ -14,6 +15,32 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { siteId } = await params
+
+  const areasDeAtuacao = [
+    {
+      icon: BookOpen,
+      title: "PDDE",
+      description:
+        "Orientação e apoio para uma gestão transparente dos recursos da educação.",
+      href: `/institucional/${siteId}/pdde`,
+    },
+    {
+      icon: Users2,
+      title: "Articulação",
+      description:
+        "Conexões que fortalecem políticas públicas e a participação da sociedade.",
+      href: `/institucional/${siteId}/articulacao`,
+    },
+    {
+      icon: Calendar,
+      title: "Coordenadorias técnicas",
+      description:
+        "Conhecimento especializado para apoiar pessoas, famílias e profissionais.",
+      href: `/institucional/${siteId}/coordenadorias-tecnicas`,
+      className: "md:col-span-2 lg:col-span-1",
+    },
+  ]
+
   return (
     <div>
       <Head>
@@ -30,131 +57,43 @@ export default async function Page({ params }: PageProps) {
         </SectionWrapper>
 
         <SectionWrapper className="py-10">
-          <Card className="border border-blue-100 p-0 drop-shadow-2xl">
-            <CardContent className="grid grid-cols-1 gap-6 p-0 md:grid-cols-[1fr_1.25fr] md:gap-10">
-              <div
-                role="banner"
-                className="relative flex h-64 w-full items-center justify-center overflow-hidden rounded-t-xl md:h-auto md:min-h-140 md:rounded-none md:rounded-l-xl"
-              >
-                <Image
-                  src={Teste}
-                  alt="Mariana Alves"
-                  className="h-full w-full object-cover"
-                  priority
-                />
-              </div>
+          <header className="mb-8">
+            <SectionEyebrow>Liderança</SectionEyebrow>
+            <h2 className="text-2xl font-semibold text-brand-strong md:text-3xl">
+              Quem conduz esta frente
+            </h2>
+          </header>
 
-              <div role="contentinfo" className="p-6 md:p-12">
-                <span className="mb-3 block text-xs font-semibold text-blue-300 uppercase">
-                  Quem conduz esta frente
-                </span>
+          <Separator orientation="horizontal" className="mb-8" />
 
-                <h2 className="mb-5 text-2xl font-semibold md:text-3xl">
-                  José Marcos Cardoso do Carmo
-                </h2>
-
-                <p className="text-base leading-relaxed font-normal text-zinc-800">
-                  Nossa atuação nasce do compromisso com a defesa de direitos, a
-                  autonomia e a participação social. Em diálogo com a Rede Apae,
-                  conectamos conhecimento, políticas públicas e práticas que
-                  fazem a diferença.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          <ProfileCard
+            photo={Teste}
+            name="José Marcos Cardoso do Carmo"
+            bio="Nossa atuação nasce do compromisso com a defesa de direitos, a autonomia e a participação social. Em diálogo com a Rede Apae, conectamos conhecimento, políticas públicas e práticas que fazem a diferença."
+          />
         </SectionWrapper>
 
         <SectionWrapper className="py-10">
-          <header className="flex items-center">
-            <h3 className="mb-8 text-2xl font-semibold text-blue-950 md:text-3xl">
+          <header className="mb-8">
+            <SectionEyebrow>Nossa atuação</SectionEyebrow>
+            <h2 className="text-2xl font-semibold text-brand-strong md:text-3xl">
               Como trabalhamos
-            </h3>
+            </h2>
           </header>
 
+          <Separator orientation="horizontal" className="mb-8" />
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3">
-              <CardContent>
-                <div className="w-fit rounded-full bg-blue-200 p-2.5">
-                  <BookOpen size={20} className="font-bold text-blue-950" />
-                </div>
-
-                <h3 className="mt-6 text-xl font-semibold text-blue-950">
-                  PDDE
-                </h3>
-
-                <p className="mt-2 text-base font-normal text-zinc-800">
-                  Orientação e apoio para uma gestão transparente dos recursos
-                  da educação.
-                </p>
-
-                <Link
-                  href={`/institucional/${siteId}/pdde`}
-                  className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
-                >
-                  <span>Conheço esta área</span>
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-2"
-                  />
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3">
-              <CardContent>
-                <div className="w-fit rounded-full bg-blue-200 p-2.5">
-                  <Users2 size={20} className="font-bold text-blue-950" />
-                </div>
-
-                <h3 className="mt-6 text-xl font-semibold text-blue-950">
-                  Articulação
-                </h3>
-
-                <p className="mt-2 text-base font-normal text-zinc-800">
-                  Conexões que fortalecem políticas públicas e a participação da
-                  sociedade.
-                </p>
-
-                <Link
-                  href={`/institucional/${siteId}/articulacao`}
-                  className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
-                >
-                  <span>Conheço esta área</span>
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-2"
-                  />
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="group border border-blue-100 shadow-2xl transition-transform duration-500 hover:-translate-y-3 md:col-span-2 lg:col-span-1">
-              <CardContent>
-                <div className="w-fit rounded-full bg-blue-200 p-2.5">
-                  <Calendar size={20} className="font-bold text-blue-950" />
-                </div>
-
-                <h3 className="mt-6 text-xl font-semibold text-blue-950">
-                  Coordenadorias técnicas
-                </h3>
-
-                <p className="mt-2 text-base font-normal text-zinc-800">
-                  Conhecimento especializado para apoiar pessoas, famílias e
-                  profissionais.
-                </p>
-
-                <Link
-                  href={`/institucional/${siteId}/coordenadorias-tecnicas`}
-                  className="group mt-6 flex items-center gap-1.5 text-sm font-medium group-hover:underline"
-                >
-                  <span>Conheço esta área</span>
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-2"
-                  />
-                </Link>
-              </CardContent>
-            </Card>
+            {areasDeAtuacao.map((area) => (
+              <IconFeatureCard
+                key={area.title}
+                icon={area.icon}
+                title={area.title}
+                description={area.description}
+                href={area.href}
+                className={area.className}
+              />
+            ))}
           </div>
         </SectionWrapper>
       </main>
