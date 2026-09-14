@@ -13,14 +13,14 @@ export const footerLinks = {
   ],
   participe: [
     { label: "Seja Voluntario", href: "/voluntario" },
-    { label: "Faca uma Doacao", href: "#doar" },
-    { label: "Parcerias", href: "#parcerias" },
-    { label: "Trabalhe Conosco", href: "#carreiras" },
+    { label: "Faca uma Doação", href: "https://doeeajudeapaebrasil.com.br/" },
+    // { label: "Parcerias", href: "#parcerias" },
+    // { label: "Trabalhe Conosco", href: "#carreiras" },
   ],
   contato: [
     { label: "Fale Conosco", href: "/#contato" },
     { label: "Encontre uma APAE", href: "/encontre-apae" },
-    { label: "Imprensa", href: "#imprensa" },
-    { label: "Ouvidoria", href: "#ouvidoria" },
+    // { label: "Imprensa", href: "#imprensa" },
+    // { label: "Ouvidoria", href: "#ouvidoria" },
   ],
 }

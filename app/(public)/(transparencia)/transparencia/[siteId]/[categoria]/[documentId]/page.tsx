@@ -17,12 +17,16 @@ export default async function Page({ params }: PageProps) {
   const categorias = await fetch.getCategorias({ siteId: Number(siteId) })
   const categoriaInfo = categorias.find((item) => item.id === categoriaId)
 
-  if (!categoriaInfo) notFound()
-
   const documentos = await fetch.getDocumentos({ idCategoria: categoriaId })
   const documento = documentos.find((item) => String(item.id) === documentId)
 
-  if (!documento) notFound()
+  if (!categoriaInfo) {
+    notFound()
+  }
+
+  if (!documento) {
+    notFound()
+  }
 
   const outrosDocumentos = documentos
     .filter((item) => item.id !== documento.id)
@@ -46,7 +50,7 @@ export default async function Page({ params }: PageProps) {
             </span>
 
             <h1 className="mt-4 text-2xl leading-tight font-bold text-balance text-blue-950 sm:text-3xl">
-              {documento.nome}
+              {documento.nome} - {documento.ano}
             </h1>
 
             <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-blue-900/10 pb-6 text-sm text-blue-900/60">

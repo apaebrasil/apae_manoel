@@ -14,16 +14,15 @@ export default async function Page({ params }: PageProps) {
   const { slug } = await params
 
   const responseSuponsor = await fetch.sponsorBySlug({ id: slug })
-
   return (
     <main className="container mx-auto max-w-7xl">
       <SectionWrapper className="w-full px-8 py-14">
         <Link
           href="/"
-          className="group flex items-center gap-2 text-xs font-normal hover:underline"
+          className="group flex w-fit items-center gap-2 rounded-xl px-5 py-2 text-base font-normal transition-all hover:underline"
         >
-          <ArrowLeft size={12} />
-          <span> Voltar para a home</span>
+          <ArrowLeft size={16} />
+          <span>Voltar para a home</span>
         </Link>
 
         <div className="pt-16 pb-11">
@@ -34,7 +33,7 @@ export default async function Page({ params }: PageProps) {
 
         <Image
           src={responseSuponsor.logo_url}
-          alt="nuvem"
+          alt={responseSuponsor.nome}
           className="block aspect-video w-full rounded-md object-contain shadow-2xl"
           width={500}
           height={500}

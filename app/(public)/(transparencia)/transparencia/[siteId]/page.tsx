@@ -42,8 +42,8 @@ export default async function Page({ params }: PageProps) {
               </h1>
 
               <p className="max-w-2xl text-base font-normal text-blue-900/80">
-                Acesse estatutos, prestações de contas, relatórios e demais
-                documentos institucionais organizados por categoria.
+                Acesse estatutos, relatórios e demais documentos institucionais
+                organizados por categoria.
               </p>
             </div>
           </header>

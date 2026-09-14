@@ -27,6 +27,7 @@ export interface Documento {
   idCategoria: number
   criadoEm: DateDetails
   criadoPor: string
+  ano: string
 }
 
 export interface CategoriaTransparencia {

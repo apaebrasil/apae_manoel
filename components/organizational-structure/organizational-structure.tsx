@@ -1,7 +1,7 @@
 "use client"
 
-import { useMemo, useState } from "react"
 import Image from "next/image"
+import { useMemo, useState } from "react"
 import { ArrowRight, Building2, Search, Users2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -139,7 +139,7 @@ export function OrganizationalStructure({
           </div>
         </div>
         <Separator />
-
+        <h2> {setorNomePorId.get(selectedSetorId ?? 0)}</h2>
         {colaboradores.length === 0 ? (
           <p className="pt-10 text-center text-sm text-zinc-600">
             Nenhum colaborador encontrado.

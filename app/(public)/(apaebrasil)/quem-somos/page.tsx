@@ -13,7 +13,7 @@ export default async function Page() {
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <div className="container mx-auto">
-        <SectionWrapper className="py-10 md:py-24">
+        <SectionWrapper className="py-10 md:py-24" id="historia">
           <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 bg-blue-100/20 p-6 sm:p-10">
             <div className="pointer-events-none absolute -top-10 -right-8 h-32 w-32 animate-[float_6s_ease-in-out_infinite] rounded-full border-4 border-blue-300 bg-blue-200/40 sm:-top-16 sm:-right-10 sm:h-56 sm:w-56" />
 
@@ -79,7 +79,7 @@ export default async function Page() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="pb-16 md:pb-24">
+        <SectionWrapper className="pb-16 md:pb-24" id="missao">
           <header className="mb-10 flex flex-col items-center gap-2 text-center">
             <span className="text-sm font-semibold text-blue-600 uppercase">
               Nossos pilares
