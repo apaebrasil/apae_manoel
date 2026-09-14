@@ -40,7 +40,6 @@ export default async function Page({ params, searchParams }: PageProps) {
   const itemPerPage = 5
 
   const { siteId } = await params
-  const currentParams = await searchParams
   const { page, titulo } = await searchParams
 
   const currentPage = Number(page) || 1
@@ -147,6 +146,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             <Combobox>
               <div className="relative">
                 <ComboboxInput
+                  id="calndar-filter"
                   className="placeholder:pl-9"
                   placeholder="Selecione uma data"
                 />
