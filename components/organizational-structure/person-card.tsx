@@ -146,10 +146,6 @@ export function PersonCard({ person, setorNome }: PersonCardProps) {
           <h4 className="text-sm font-bold text-zinc-900">{person.nome}</h4>
           <p className="text-xs text-zinc-600">{person.cargo}</p>
         </div>
-
-        <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-          {person.lotacao}
-        </Badge>
       </DialogTrigger>
 
       <DialogContent
