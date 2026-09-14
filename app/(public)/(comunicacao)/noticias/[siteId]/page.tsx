@@ -1,11 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import {
-  ImageOff,
-  Newspaper,
-  Search, User2,
-  CalendarDays
-} from "lucide-react"
+import { ImageOff, Newspaper, Search, User2, CalendarDays } from "lucide-react"
 import { SectionWrapper } from "@/components/section"
 import { fetch } from "@/services"
 import { Input } from "@/components/ui/input"
@@ -190,6 +185,7 @@ export default async function Page({ params, searchParams }: PageProps) {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         fill
                         className="object-cover transition-transform duration-500 group-hover/card:scale-110"
+                        priority
                       />
                       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/60 via-blue-950/0 to-transparent" />
                     </>

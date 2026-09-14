@@ -12,17 +12,6 @@ export interface ApaeLocation {
 
 export const apaeLocations: ApaeLocation[] = [
   {
-    id: "sao-paulo",
-    name: "APAE São Paulo",
-    city: "São Paulo, SP",
-    address: "Rua Dr. Diogo de Faria, 558 — Vila Clementino",
-    phone: "(11) 5080-7000",
-    email: "contato@apaesp.org.br",
-    hours: "Segunda a sexta, das 8h às 17h",
-    description: "Atendimento interdisciplinar para pessoas com deficiência intelectual e suas famílias em diferentes fases da vida.",
-    services: ["Assistência social", "Educação especial", "Saúde e reabilitação"],
-  },
-  {
     id: "campinas",
     name: "APAE Campinas",
     city: "Campinas, SP",
@@ -30,8 +19,13 @@ export const apaeLocations: ApaeLocation[] = [
     phone: "(19) 3772-2800",
     email: "contato@apaecampinas.org.br",
     hours: "Segunda a sexta, das 8h às 17h",
-    description: "Serviços de apoio, educação e inclusão para ampliar a autonomia e a participação social.",
-    services: ["Educação especial", "Oficinas profissionalizantes", "Apoio às famílias"],
+    description:
+      "Serviços de apoio, educação e inclusão para ampliar a autonomia e a participação social.",
+    services: [
+      "Educação especial",
+      "Oficinas profissionalizantes",
+      "Apoio às famílias",
+    ],
   },
   {
     id: "rio-de-janeiro",
@@ -41,8 +35,13 @@ export const apaeLocations: ApaeLocation[] = [
     phone: "(21) 2570-2494",
     email: "contato@apaerj.org.br",
     hours: "Segunda a sexta, das 8h às 17h",
-    description: "Uma rede de cuidado que acompanha pessoas com deficiência e fortalece a autonomia de cada família.",
-    services: ["Clínica interdisciplinar", "Defesa de direitos", "Capacitação profissional"],
+    description:
+      "Uma rede de cuidado que acompanha pessoas com deficiência e fortalece a autonomia de cada família.",
+    services: [
+      "Clínica interdisciplinar",
+      "Defesa de direitos",
+      "Capacitação profissional",
+    ],
   },
   {
     id: "belo-horizonte",
@@ -52,8 +51,13 @@ export const apaeLocations: ApaeLocation[] = [
     phone: "(31) 3115-7600",
     email: "contato@apaebh.org.br",
     hours: "Segunda a sexta, das 8h às 17h",
-    description: "Atendimento próximo e especializado para promover desenvolvimento, inclusão e qualidade de vida.",
-    services: ["Estimulação precoce", "Atendimento psicológico", "Inclusão no trabalho"],
+    description:
+      "Atendimento próximo e especializado para promover desenvolvimento, inclusão e qualidade de vida.",
+    services: [
+      "Estimulação precoce",
+      "Atendimento psicológico",
+      "Inclusão no trabalho",
+    ],
   },
 ]
 
