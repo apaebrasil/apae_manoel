@@ -2,7 +2,6 @@
 
 import {
   Accessibility,
-  Contrast,
   MoveDiagonal,
   RotateCcw,
   Underline,
@@ -59,9 +58,8 @@ function applyPreferences(preferences: A11yPreferences) {
 
 export function AccessibilityMenu() {
   const [isOpen, setIsOpen] = useState(false)
-  const [preferences, setPreferences] = useState<A11yPreferences>(
-    loadPreferences
-  )
+  const [preferences, setPreferences] =
+    useState<A11yPreferences>(loadPreferences)
 
   useEffect(() => {
     applyPreferences(preferences)
@@ -153,7 +151,7 @@ export function AccessibilityMenu() {
             <Separator />
 
             <div className="space-y-2">
-              <button
+              {/* <button
                 type="button"
                 onClick={() =>
                   updatePreferences({ highContrast: !preferences.highContrast })
@@ -163,7 +161,7 @@ export function AccessibilityMenu() {
               >
                 <Contrast size={16} className="shrink-0" />
                 Alto contraste
-              </button>
+              </button> */}
 
               <button
                 type="button"
@@ -173,7 +171,7 @@ export function AccessibilityMenu() {
                   })
                 }
                 aria-pressed={preferences.underlineLinks}
-                className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2 text-left text-sm font-medium text-foreground transition hover:bg-muted aria-pressed:border-blue-900 aria-pressed:bg-blue-900 aria-pressed:text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2 text-left text-sm font-medium text-foreground transition hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none aria-pressed:border-blue-900 aria-pressed:bg-blue-900 aria-pressed:text-primary-foreground"
               >
                 <Underline size={16} className="shrink-0" />
                 Sublinhar links
@@ -187,7 +185,7 @@ export function AccessibilityMenu() {
                   })
                 }
                 aria-pressed={preferences.reduceMotion}
-                className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2 text-left text-sm font-medium text-foreground transition hover:bg-muted aria-pressed:border-blue-900 aria-pressed:bg-blue-900 aria-pressed:text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                className="flex w-full cursor-pointer items-center gap-2.5 rounded-lg border border-border px-3 py-2 text-left text-sm font-medium text-foreground transition hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none aria-pressed:border-blue-900 aria-pressed:bg-blue-900 aria-pressed:text-primary-foreground"
               >
                 <MoveDiagonal size={16} className="shrink-0" />
                 Reduzir movimento
@@ -213,7 +211,9 @@ export function AccessibilityMenu() {
         onClick={() => setIsOpen((value) => !value)}
         aria-expanded={isOpen}
         aria-label={
-          isOpen ? "Fechar menu de acessibilidade" : "Abrir menu de acessibilidade"
+          isOpen
+            ? "Fechar menu de acessibilidade"
+            : "Abrir menu de acessibilidade"
         }
         title="Acessibilidade"
         className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-border bg-blue-900 text-primary-foreground shadow-lg transition hover:-translate-y-1 hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"

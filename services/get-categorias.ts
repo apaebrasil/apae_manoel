@@ -11,5 +11,7 @@ export async function getCategorias({
 }: GetCategoriasProps): Promise<CategoriaTransparencia[]> {
   const { categorias } = await getInfoWebSite({ domain: "apaebrasil.org.br" })
 
+  console.log("oi oi oi ", categorias)
+
   return categorias.filter((categoria) => categoria.idSite === siteId)
 }

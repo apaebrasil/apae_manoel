@@ -51,6 +51,7 @@ export async function getInfoWebSite({
   if (!websiteInfo.ok) {
     throw new Error("Erro ao buscar os dados da página Home")
   }
+
   const data = await websiteInfo.json()
   return data
 }
