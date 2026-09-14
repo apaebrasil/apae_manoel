@@ -1,25 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 import {
   ImageOff,
   Newspaper,
-  Search,
-  Filter,
-  User2,
-  CalendarDays,
+  Search, User2,
+  CalendarDays
 } from "lucide-react"
 import { SectionWrapper } from "@/components/section"
 import { fetch } from "@/services"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import {
   Combobox,
   ComboboxContent,
