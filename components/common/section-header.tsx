@@ -1,30 +1,58 @@
-import { Zap } from "lucide-react"
+import { LucideIcon, Zap } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { DecorativeBlob } from "./decorative-blob"
 
 interface SectionHeaderProps {
   subtitle: string
   title: string
   description: string
+  icon?: LucideIcon
+  variant?: "eyebrow" | "badge"
+  as?: "h1" | "h2"
 }
 
 export function SectionHeader({
   subtitle,
   title,
   description,
+  icon: Icon = Zap,
+  variant = "eyebrow",
+  as: Heading = "h2",
 }: SectionHeaderProps) {
   return (
     <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 bg-blue-100/20 p-6 sm:p-10">
-      <div className="pointer-events-none absolute -top-10 -right-8 h-32 w-32 animate-[float_6s_ease-in-out_infinite] rounded-full border-4 border-blue-300 bg-blue-200/40 sm:-top-16 sm:-right-10 sm:h-56 sm:w-56" />
+      <DecorativeBlob />
 
       <div className="relative z-10 flex flex-col gap-5">
-        <span className="inline-flex items-center gap-2 text-xs font-bold text-zinc-800 uppercase">
-          <Zap size={16} /> {subtitle}
-        </span>
+        {variant === "badge" ? (
+          <span className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase shadow-sm shadow-blue-600/30">
+            <Icon className="h-3.5 w-3.5" />
+            {subtitle}
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-2 text-xs font-bold text-zinc-800 uppercase">
+            <Icon size={16} /> {subtitle}
+          </span>
+        )}
 
-        <h2 className="max-w-2xl text-3xl font-bold text-balance text-black sm:text-4xl md:text-5xl lg:text-6xl">
+        <Heading
+          className={cn(
+            "max-w-2xl text-3xl font-bold text-balance sm:text-4xl md:text-5xl lg:text-6xl",
+            variant === "badge" ? "text-blue-950" : "text-black"
+          )}
+        >
           {title}
-        </h2>
+        </Heading>
 
-        <p className="max-w-2xl text-sm font-normal text-zinc-800">
+        <p
+          className={cn(
+            "max-w-2xl font-normal",
+            variant === "badge"
+              ? "text-base text-blue-900/80"
+              : "text-sm text-zinc-800"
+          )}
+        >
           {description}
         </p>
       </div>
