@@ -1,7 +1,9 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, CalendarDays, Download, User2 } from "lucide-react"
+import { CalendarDays, Download, User2 } from "lucide-react"
 import { SectionWrapper } from "@/components/section"
+import { BackLink } from "@/components/common/back-link"
+import { DetailHeader } from "@/components/common/detail-header"
 import { DocumentIcon } from "@/components/transparency/document-icon"
 import { formatedDate } from "@/lib/formated-date"
 import { fetch } from "@/services"
@@ -36,44 +38,31 @@ export default async function Page({ params }: PageProps) {
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <SectionWrapper className="py-8 md:py-16">
         <article className="container mx-auto max-w-3xl">
-          <Link
-            href={`/transparencia/${siteId}/${categoriaId}`}
-            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-blue-900/70 transition-colors hover:text-blue-900"
-          >
-            <ArrowLeft className="h-4 w-4" />
+          <BackLink href={`/transparencia/${siteId}/${categoriaId}`}>
             Voltar para {categoriaInfo.titulo}
-          </Link>
+          </BackLink>
 
-          <header className="mb-8">
-            <span className="inline-flex w-fit items-center rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase shadow-sm shadow-blue-600/30">
-              {categoriaInfo.titulo}
-            </span>
-
-            <h1 className="mt-4 text-2xl leading-tight font-bold text-balance text-blue-950 sm:text-3xl">
-              {documento.nome} - {documento.ano}
-            </h1>
-
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-blue-900/10 pb-6 text-sm text-blue-900/60">
-              <span className="inline-flex items-center gap-1.5 font-medium">
-                {documento.tipo.toUpperCase()} · {documento.tamanho}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="h-4 w-4" />
-                Criado em{" "}
-                {formatedDate({
+          <DetailHeader
+            badge={categoriaInfo.titulo}
+            title={`${documento.nome} - ${documento.ano}`}
+            meta={[
+              {
+                label: `${documento.tipo.toUpperCase()} · ${documento.tamanho}`,
+                emphasis: true,
+              },
+              {
+                icon: CalendarDays,
+                label: `Criado em ${formatedDate({
                   dayOfMonth: documento.criadoEm.dayOfMonth,
                   monthValue: documento.criadoEm.monthValue,
                   year: documento.criadoEm.year,
-                })}
-              </span>
-              {documento.criadoPor && (
-                <span className="inline-flex items-center gap-1.5">
-                  <User2 className="h-4 w-4" />
-                  {documento.criadoPor}
-                </span>
-              )}
-            </div>
-          </header>
+                })}`,
+              },
+              ...(documento.criadoPor
+                ? [{ icon: User2, label: documento.criadoPor }]
+                : []),
+            ]}
+          />
 
           <div className="flex flex-col items-center gap-5 rounded-2xl border-2 border-blue-200 bg-white p-10 text-center shadow-sm shadow-blue-950/5 sm:flex-row sm:text-left">
             <DocumentIcon
@@ -93,6 +82,7 @@ export default async function Page({ params }: PageProps) {
               href={documento.link}
               target="_blank"
               rel="noopener noreferrer"
+
               className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/30 transition-colors hover:bg-blue-700"
             >
               <Download className="h-4 w-4" />
@@ -125,13 +115,12 @@ export default async function Page({ params }: PageProps) {
           )}
 
           <div className="mt-10 border-t border-blue-900/10 pt-6">
-            <Link
+            <BackLink
               href={`/transparencia/${siteId}/${categoriaId}`}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-5 py-2.5 text-sm font-semibold text-blue-900 shadow-sm shadow-blue-950/5 transition-colors hover:border-blue-300 hover:bg-blue-50"
+              variant="pill"
             >
-              <ArrowLeft className="h-4 w-4" />
               Ver outros documentos
-            </Link>
+            </BackLink>
           </div>
         </article>
       </SectionWrapper>

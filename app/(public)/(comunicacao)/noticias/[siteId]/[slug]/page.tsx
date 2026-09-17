@@ -1,7 +1,8 @@
 import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft, CalendarDays, ImageOff, User2 } from "lucide-react"
+import { CalendarDays, ImageOff, User2 } from "lucide-react"
 import { SectionWrapper } from "@/components/section"
+import { BackLink } from "@/components/common/back-link"
+import { DetailHeader } from "@/components/common/detail-header"
 import { fetch } from "@/services"
 import { formatedDate } from "@/lib/formated-date"
 import { NewsContent } from "@/components/news/news-content"
@@ -18,38 +19,24 @@ export default async function Page({ params }: NewsParams) {
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <SectionWrapper className="py-8 md:py-16">
         <article className="container mx-auto max-w-3xl">
-          <Link
-            href={`/noticias/${siteId}`}
-            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-blue-900/70 transition-colors hover:text-blue-900"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Voltar às notícias
-          </Link>
+          <BackLink href={`/noticias/${siteId}`}>Voltar às notícias</BackLink>
 
-          <header className="mb-8">
-            <span className="inline-flex w-fit items-center rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase shadow-sm shadow-blue-600/30">
-              {news.categoria}
-            </span>
-
-            <h1 className="mt-4 text-3xl leading-tight font-bold text-balance text-blue-950 sm:text-4xl">
-              {news.titulo}
-            </h1>
-
-            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-b border-blue-900/10 pb-6 text-sm text-blue-900/60">
-              <span className="inline-flex items-center gap-1.5 font-medium">
-                <User2 className="h-4 w-4" />
-                {news.autor}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="h-4 w-4" />
-                {formatedDate({
+          <DetailHeader
+            badge={news.categoria}
+            title={news.titulo}
+            titleSize="lg"
+            meta={[
+              { icon: User2, label: news.autor, emphasis: true },
+              {
+                icon: CalendarDays,
+                label: formatedDate({
                   dayOfMonth: news.criadoEm.dayOfMonth,
                   monthValue: news.criadoEm.monthValue,
                   year: news.criadoEm.year,
-                })}
-              </span>
-            </div>
-          </header>
+                }),
+              },
+            ]}
+          />
 
           <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-blue-100 shadow-sm shadow-blue-950/10">
             {news.url ? (
@@ -75,13 +62,9 @@ export default async function Page({ params }: NewsParams) {
           <NewsContent newsContent={news.conteudo_json} />
 
           <div className="mt-10 border-t border-blue-900/10 pt-6">
-            <Link
-              href={`/noticias/${siteId}`}
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white px-5 py-2.5 text-sm font-semibold text-blue-900 shadow-sm shadow-blue-950/5 transition-colors hover:border-blue-300 hover:bg-blue-50"
-            >
-              <ArrowLeft className="h-4 w-4" />
+            <BackLink href={`/noticias/${siteId}`} variant="pill">
               Ver outras notícias
-            </Link>
+            </BackLink>
           </div>
         </article>
       </SectionWrapper>

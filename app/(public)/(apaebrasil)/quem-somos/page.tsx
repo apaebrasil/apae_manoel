@@ -1,6 +1,7 @@
 import { Eye, Target, Zap } from "lucide-react"
 import { DynamicIcon } from "lucide-react/dynamic"
 import { SectionWrapper } from "@/components/section"
+import { SectionHeader } from "@/components/common/section-header"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { aboutInfo, aboutValues, historyMilestones } from "@/constants"
 import { fetch } from "@/services"
@@ -14,25 +15,14 @@ export default async function Page() {
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <div className="container mx-auto">
         <SectionWrapper className="py-10 md:py-24" id="historia">
-          <header className="relative container mx-auto mb-10 overflow-hidden rounded-lg border-2 border-blue-200 bg-blue-100/20 p-6 sm:p-10">
-            <div className="pointer-events-none absolute -top-10 -right-8 h-32 w-32 animate-[float_6s_ease-in-out_infinite] rounded-full border-4 border-blue-300 bg-blue-200/40 sm:-top-16 sm:-right-10 sm:h-56 sm:w-56" />
-
-            <div className="relative z-10 flex flex-col gap-5">
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase shadow-sm shadow-blue-600/30">
-                <Zap className="h-3.5 w-3.5" />
-                Quem somos
-              </span>
-
-              <h1 className="max-w-2xl text-3xl font-bold text-balance text-blue-950 sm:text-4xl md:text-5xl lg:text-6xl">
-                A maior rede de atendimento à pessoa com deficiência da América
-                Latina
-              </h1>
-
-              <p className="max-w-2xl text-base font-normal text-blue-900/80">
-                {response.quem_somos}
-              </p>
-            </div>
-          </header>
+          <SectionHeader
+            variant="badge"
+            as="h1"
+            icon={Zap}
+            subtitle="Quem somos"
+            title="A maior rede de atendimento à pessoa com deficiência da América Latina"
+            description={response.quem_somos}
+          />
         </SectionWrapper>
 
         <SectionWrapper className="pb-16 md:pb-24">
