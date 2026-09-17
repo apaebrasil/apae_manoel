@@ -52,6 +52,7 @@ export default async function Page({ params }: PageProps) {
                   siteId={siteId}
                   documentCount={contagemPorCategoria.get(categoria.id) ?? 0}
                   index={index}
+                  icon="folder-open"
                 />
               ))}
             </div>
