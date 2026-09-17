@@ -33,9 +33,11 @@ export function AnimatedCounter({
   }, [isInView, value, duration])
 
   return (
-    <span>
-      <span ref={ref}>0</span>
-      {suffix}
+    <span aria-label={`${value.toLocaleString("pt-BR")}${suffix}`}>
+      <span aria-hidden="true">
+        <span ref={ref}>0</span>
+        {suffix}
+      </span>
     </span>
   )
 }

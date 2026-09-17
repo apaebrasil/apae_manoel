@@ -13,13 +13,16 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
   return (
     <div className="container mx-auto space-y-12 px-4">
       <header className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-        <Badge className="mb-2 inline-block h-auto rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-950">
+        <Badge className="mb-2 inline-block h-auto rounded-full bg-blue-100 px-4 py-1.5 text-sm font-bold text-blue-950">
           Nossos Parceiros
         </Badge>
-        <h2 className="text-3xl font-bold text-zinc-950 md:text-4xl">
+        <h2
+          id="partners-heading"
+          className="text-3xl font-bold text-black md:text-4xl"
+        >
           Parcerias que Fortalecem a Inclusão
         </h2>
-        <p className="font-medium text-pretty text-zinc-700">
+        <p className="font-medium text-pretty text-zinc-800">
           Juntos transformamos vidas. A APAE Brasil se une a empresas e pessoas
           comprometidas com a autonomia, a defesa de direitos e o
           desenvolvimento de pessoas com deficiência intelectual e múltipla.
@@ -37,7 +40,7 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
             <h3 className="text-2xl font-bold text-balance md:text-3xl">
               Sua empresa pode fazer parte dessa rede
             </h3>
-            <p className="text-pretty text-blue-100/80">
+            <p className="text-pretty text-white/90">
               Torne-se um parceiro da APAE Brasil e ajude a levar autonomia,
               educação e cidadania a milhares de pessoas com deficiência
               intelectual e múltipla em todo o país.

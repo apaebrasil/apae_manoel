@@ -31,10 +31,13 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
   return (
     <div className="mx-auto grid max-w-7xl gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
       <header className="space-y-5">
-        <h3 className="text-2xl font-bold text-white lg:text-4xl">
+        <h3
+          id="contact-me-heading"
+          className="text-2xl font-bold text-white lg:text-4xl"
+        >
           Conte para nós o que você precisa.
         </h3>
-        <p className="font-medium text-zinc-300">
+        <p className="font-medium text-white/90">
           A Federação está aqui para orientar, conectar e abrir caminhos.
           Escolha o assunto e nossa equipe encaminhará sua mensagem.
         </p>
@@ -48,7 +51,7 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
               <p className="text-sm font-bold text-white">
                 E-mail institucional
               </p>
-              <p className="text-sm font-medium text-zinc-300">{email}</p>
+              <p className="text-sm font-medium text-white/90">{email}</p>
             </div>
           </div>
 
@@ -58,7 +61,7 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
             </div>
             <div>
               <p className="text-sm font-bold text-white">Central FENAPAES</p>
-              <p className="text-sm font-medium text-zinc-300">{telefone}</p>
+              <p className="text-sm font-medium text-white/90">{telefone}</p>
             </div>
           </div>
 
@@ -68,7 +71,7 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
             </div>
             <div>
               <p className="text-sm font-bold text-white">Onde estamos</p>
-              <p className="text-sm font-medium text-zinc-300">{endereco}</p>
+              <p className="text-sm font-medium text-white/90">{endereco}</p>
             </div>
           </div>
         </div>
@@ -76,15 +79,15 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
 
       <aside className="rounded-md bg-blue-950 p-9 shadow-2xl ring-4 shadow-blue-300 ring-blue-200">
         <header className="space-y-2">
-          <h3 className="text-xs font-bold text-zinc-200 lg:text-right">
+          <h3 className="text-xs font-bold text-white lg:text-left">
             Sua voz move a rede
           </h3>
 
-          <h2 className="text-2xl font-bold text-white lg:text-right lg:text-4xl">
+          <h2 className="text-2xl font-bold text-white lg:text-left lg:text-4xl">
             Vamos encontrar o caminho juntos.
           </h2>
 
-          <p className="text-justify text-xs font-medium text-zinc-300 lg:text-sm">
+          <p className="max-w-xl text-justify text-xs font-medium text-white/90 lg:text-sm">
             Conte o que trouxe você até a FENAPAES. A sua mensagem será acolhida
             e direcionada para quem pode ajudar.
           </p>
@@ -126,7 +129,10 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
           </div>
 
           <div className="flex flex-1 flex-col gap-2">
-            <label htmlFor="" className="text-sm font-semibold text-white">
+            <label
+              htmlFor="user_question"
+              className="text-sm font-semibold text-white"
+            >
               Menssagem
             </label>
             <textarea

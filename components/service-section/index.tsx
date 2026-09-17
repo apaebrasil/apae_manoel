@@ -10,7 +10,10 @@ export function ServiceSection() {
           <Badge className="mb-4 inline-block h-auto rounded-full bg-blue-100 px-4 py-1.5 text-sm font-medium text-blue-950">
             Nossos Serviços
           </Badge>
-          <h2 className="text-3xl font-bold text-zinc-950 md:text-5xl">
+          <h2
+            id="service-heading"
+            className="text-3xl font-bold text-zinc-950 md:text-5xl"
+          >
             Atendimento Integrado
           </h2>
           <p className="max-w-2xl text-center font-medium text-zinc-800 lg:text-[18px]">

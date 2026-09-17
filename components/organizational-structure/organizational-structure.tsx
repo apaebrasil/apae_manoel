@@ -72,51 +72,60 @@ export function OrganizationalStructure({
     <div className="flex flex-col gap-8 pb-16 md:flex-row md:pb-24">
       <div className="md:shrink-0">
         <div className="w-full rounded-md border-2 border-blue-200 bg-blue-100 p-3 md:w-72">
-          <h3 className="mb-3.5 text-xs font-bold text-zinc-800">
+          <h3 id="setores-heading" className="mb-3.5 text-xs font-bold text-zinc-800">
             Navegar por departamento
           </h3>
 
-          <ul className="space-y-1 pt-3">
-            <li
-              onClick={() => setSelectedSetorId(null)}
-              className={`group flex w-full cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm ${
-                selectedSetorId === null ? "bg-white shadow-sm" : ""
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <Users2 size={14} />
-                <span>Todos os departamentos</span>
-              </div>
-              <ArrowRight
-                size={14}
-                className={
-                  selectedSetorId === null
-                    ? "block"
-                    : "hidden group-hover:block"
-                }
-              />
-            </li>
-
-            {setoresOrdenados.map((setor) => (
-              <li
-                key={setor.uuid}
-                onClick={() => setSelectedSetorId(setor.id)}
-                className={`group flex w-full cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-sm transition-colors hover:bg-white hover:shadow-sm ${
-                  selectedSetorId === setor.id ? "bg-white shadow-sm" : ""
+          <ul className="space-y-1 pt-3" aria-labelledby="setores-heading">
+            <li>
+              <button
+                type="button"
+                onClick={() => setSelectedSetorId(null)}
+                aria-pressed={selectedSetorId === null}
+                className={`group flex w-full cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-left text-sm transition-colors hover:bg-white hover:shadow-sm ${
+                  selectedSetorId === null ? "bg-white shadow-sm" : ""
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <SetorIcon icon={setor.icon} nome={setor.nome} />
-                  <span>{setor.nome}</span>
+                  <Users2 size={14} />
+                  <span>Todos os departamentos</span>
                 </div>
                 <ArrowRight
                   size={14}
+                  aria-hidden="true"
                   className={
-                    selectedSetorId === setor.id
+                    selectedSetorId === null
                       ? "block"
                       : "hidden group-hover:block"
                   }
                 />
+              </button>
+            </li>
+
+            {setoresOrdenados.map((setor) => (
+              <li key={setor.uuid}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSetorId(setor.id)}
+                  aria-pressed={selectedSetorId === setor.id}
+                  className={`group flex w-full cursor-pointer items-center justify-between gap-2 rounded-md p-3 text-left text-sm transition-colors hover:bg-white hover:shadow-sm ${
+                    selectedSetorId === setor.id ? "bg-white shadow-sm" : ""
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <SetorIcon icon={setor.icon} nome={setor.nome} />
+                    <span>{setor.nome}</span>
+                  </div>
+                  <ArrowRight
+                    size={14}
+                    aria-hidden="true"
+                    className={
+                      selectedSetorId === setor.id
+                        ? "block"
+                        : "hidden group-hover:block"
+                    }
+                  />
+                </button>
               </li>
             ))}
           </ul>
@@ -124,34 +133,46 @@ export function OrganizationalStructure({
       </div>
 
       <div className="min-w-0 flex-1 border-blue-200 pt-8 md:border-l-2 md:pt-0 md:pl-8">
-        <div role="searchbox" className="flex w-full justify-end pb-5">
+        <div className="flex w-full justify-end pb-5">
           <div className="relative w-full sm:max-w-sm">
             <Search
               className="absolute top-1/2 left-2 -translate-y-1/2 text-blue-500"
               size={14}
+              aria-hidden="true"
             />
             <Input
+              type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Buscar pessoa ou área"
+              aria-label="Buscar pessoa ou área"
               className="w-full pr-3 pl-9 text-base outline-none focus-visible:border-blue-400 focus-visible:ring-3 focus-visible:ring-blue-400/50"
             />
           </div>
         </div>
         <Separator />
-        <h2> {setorNomePorId.get(selectedSetorId ?? 0)}</h2>
+        <h2 id="colaboradores-heading" className="mt-4 text-lg font-bold text-zinc-900">
+          {selectedSetorId
+            ? setorNomePorId.get(selectedSetorId)
+            : "Todos os departamentos"}
+        </h2>
         {colaboradores.length === 0 ? (
           <p className="pt-10 text-center text-sm text-zinc-600">
             Nenhum colaborador encontrado.
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          <div
+            className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
+            role="list"
+            aria-labelledby="colaboradores-heading"
+          >
             {colaboradores.map((colaborador) => (
-              <PersonCard
-                key={colaborador.uuid}
-                person={colaborador}
-                setorNome={setorNomePorId.get(colaborador.idSetor)}
-              />
+              <div key={colaborador.uuid} role="listitem">
+                <PersonCard
+                  person={colaborador}
+                  setorNome={setorNomePorId.get(colaborador.idSetor)}
+                />
+              </div>
             ))}
           </div>
         )}

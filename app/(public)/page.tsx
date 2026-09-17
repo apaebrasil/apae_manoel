@@ -12,7 +12,7 @@ export default async function Page() {
   const response = await fetch.getInfoWebSite({
     domain: "apaebrasil.org.br",
   })
-
+  console.log("response: ", response)
   const camping = response.noticias.filter((item) => item.tipo === "Campanha")
 
   return (
@@ -20,7 +20,7 @@ export default async function Page() {
       <SectionWrapper
         id="hero"
         className="swipe-section relative flex min-h-screen items-center overflow-hidden"
-        aria-labelledby="hero-heading"
+        aria-label="Destaques e campanhas da APAE Brasil"
       >
         <HeroSection siteId={response.id} noticias={camping} />
       </SectionWrapper>
@@ -42,7 +42,7 @@ export default async function Page() {
       <SectionWrapper
         id="about"
         className="bg-blue-950 py-16 md:py-24"
-        aria-labelledby="about-heading"
+        aria-labelledby="impact-heading"
       >
         <About />
       </SectionWrapper>
@@ -78,7 +78,7 @@ export default async function Page() {
       <SectionWrapper
         id="location-me"
         className="bg-blue-50 px-5 py-16 md:py-24"
-        aria-labelledby="contact-me-location"
+        aria-labelledby="partners-heading"
       >
         <Partners siteId={response.id} sponsor={response.parceiros} />
       </SectionWrapper>

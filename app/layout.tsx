@@ -3,7 +3,6 @@ import { Geist_Mono, Inter } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { DonationFloat } from "@/components/donation-float"
 import { AccessibilityMenu } from "@/components/accessibility-menu"
 import { Toaster } from "@/components/ui/toast"
 import "./globals.css"
@@ -22,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       suppressHydrationWarning
       className={cn(
         "antialiased",
@@ -35,10 +34,10 @@ export default function RootLayout({
         <Header />
         {children}
 
-        <Footer />
+        <Footer  />
 
-        <DonationFloat />
         <AccessibilityMenu />
+        {/* <DonationFloat /> */}
         <Toaster />
       </body>
     </html>

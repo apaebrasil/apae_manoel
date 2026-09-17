@@ -41,6 +41,7 @@ export function DocumentIcon({
   return (
     <div
       className={`flex shrink-0 items-center justify-center rounded-lg ${colorClass} ${className ?? "h-10 w-10"}`}
+      aria-hidden="true"
     >
       <Icon className={iconClassName ?? "h-5 w-5"} />
     </div>

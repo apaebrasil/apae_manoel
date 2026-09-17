@@ -35,11 +35,14 @@ export function DocumentList({
           <Search
             className="absolute top-1/2 left-2 -translate-y-1/2 text-blue-500"
             size={14}
+            aria-hidden="true"
           />
           <Input
+            type="search"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Buscar documento"
+            aria-label="Buscar documento"
             className="w-full pr-3 pl-9 text-sm outline-none focus-visible:border-blue-400 focus-visible:ring-3 focus-visible:ring-blue-400/50"
           />
         </div>

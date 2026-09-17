@@ -12,12 +12,12 @@ interface FeatureGridCardProps {
 
 export function FeatureGridCard({ className, datas }: FeatureGridCardProps) {
   return (
-    <div className={cn(className)}>
+    <div className={cn(className)} role="list">
       {datas.map((data, index) => (
         <motion.div
           key={data.href}
           className="group flex h-full flex-col gap-6 overflow-hidden rounded-xl border-2 border-transparent bg-card/80 py-6 text-sm text-card-foreground shadow-xs ring-1 ring-foreground/10 backdrop-blur-sm hover:border-blue-200/20 hover:bg-card"
-          role="cards"
+          role="listitem"
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
