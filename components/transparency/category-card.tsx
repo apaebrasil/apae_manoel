@@ -1,16 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, FolderOpen } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { motion } from "motion/react"
 import { Badge } from "@/components/ui/badge"
 import { CategoriaTransparencia } from "./type"
+import { DynamicIcon, IconName } from "lucide-react/dynamic"
 
 interface CategoryCardProps {
   categoria: CategoriaTransparencia
   siteId: string
   documentCount: number
   index: number
+  icon: IconName
 }
 
 export function CategoryCard({
@@ -18,6 +20,7 @@ export function CategoryCard({
   siteId,
   documentCount,
   index,
+  icon,
 }: CategoryCardProps) {
   return (
     <motion.div
@@ -33,8 +36,11 @@ export function CategoryCard({
         className="group flex w-full flex-col items-start gap-4 rounded-2xl border-2 border-blue-200 bg-white p-6 text-left shadow-sm shadow-blue-950/5 transition-colors hover:border-blue-300 hover:shadow-md"
       >
         <div className="flex w-full items-start justify-between">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-800 group-hover:bg-blue-900 group-hover:text-white">
-            <FolderOpen className="h-5 w-5" />
+          <div
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-800 group-hover:bg-blue-900 group-hover:text-white"
+            aria-hidden="true"
+          >
+            <DynamicIcon name={icon} />
           </div>
         </div>
 
@@ -42,7 +48,7 @@ export function CategoryCard({
           <h3 className="text-base font-bold text-blue-950">
             {categoria.titulo}
           </h3>
-          <p className="mt-1 text-sm leading-relaxed text-blue-900/70">
+          <p className="mt-1 text-sm leading-relaxed font-normal text-blue-900/90">
             {categoria.descricao}
           </p>
         </div>
