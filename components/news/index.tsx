@@ -38,7 +38,7 @@ export function News({ noticias: news, isShowHeaderNews, siteId }: NewsProps) {
             </p>
           </div>
 
-          <Button className="mt-10 cursor-pointer justify-end rounded-3xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700">
+          <Button className="mt-10 cursor-pointer justify-end rounded-3xl bg-blue-600 p-6 text-white hover:bg-blue-700">
             <Link
               href={`/noticias/${siteId}`}
               className="flex items-center gap-2.5"

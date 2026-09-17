@@ -26,7 +26,7 @@ export function DocumentRow({
 
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold text-zinc-900 group-hover:text-blue-700">
-            {documento.nome}
+            {documento.nome} - {documento.ano}
           </p>
           <p className="text-xs text-zinc-500">
             {documento.tipo.toUpperCase()} · {documento.tamanho} · criado em{" "}
@@ -46,8 +46,15 @@ export function DocumentRow({
         size="sm"
         className="shrink-0"
         nativeButton={false}
+        title={documento.nome}
         render={
-          <a href={documento.link} target="_blank" rel="noopener noreferrer" />
+          <a
+            href={documento.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            download={documento.link}
+            title={documento.nome}
+          />
         }
       >
         <Download className="h-3.5 w-3.5" />

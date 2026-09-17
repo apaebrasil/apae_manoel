@@ -1,10 +1,14 @@
 import { footerLinks, socialLinks } from "@/constants"
-import LogoApae from "@public/logo-transparente.png"
 import Image from "next/image"
 import Link from "next/link"
 import { FooterNavigation } from "./footer-navigation"
+import { fetch } from "@/services"
 
-export function Footer() {
+export async function Footer() {
+  const response = await fetch.getInfoWebSite({
+    domain: "apaebrasil.org.br",
+  })
+
   return (
     <footer className="relative overflow-hidden bg-blue-950" role="contentinfo">
       <div className="relative z-10 container mx-auto px-4 py-16 md:py-20">
@@ -17,10 +21,11 @@ export function Footer() {
             >
               <div className="flex items-center gap-3">
                 <Image
-                  src={LogoApae}
+                  src={response.logo1_url}
                   alt="Logo Apae brasil"
                   width={100}
                   height={100}
+                  title="Logo Apae brasil"
                 />
               </div>
             </Link>
@@ -38,6 +43,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white transition-all hover:scale-110 hover:bg-white/20"
                   aria-label={`Siga-nos no ${social.label}`}
+                  title={social.label}
                 >
                   {social.icon}
                 </a>
