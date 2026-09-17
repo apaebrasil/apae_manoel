@@ -102,9 +102,11 @@ export async function getNews({
     }
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
-    throw new Error("Erro ao buscar os dados da página Notícias")
+    throw new Error("Erro ao buscar os dados da página Home")
   }
 }
 
@@ -122,9 +124,11 @@ export async function getNewsHighlight(): Promise<GetNewsProps[]> {
     return data
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
-    throw new Error("Erro ao buscar os dados da Notícias em destaque")
+    throw new Error("Erro ao buscar os dados da página Home")
   }
 }
 
@@ -148,8 +152,10 @@ export async function newsBySlug({
     return data
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
-    throw new Error("Erro ao buscar os dados da notícia")
+    throw new Error("Erro ao buscar os dados da página Home")
   }
 }

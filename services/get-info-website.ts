@@ -3,7 +3,6 @@ import { MenuItem, Submenu } from "@/components/navigation/type"
 import { Noticies } from "@/components/news/type"
 import { CategoriaTransparencia } from "@/components/transparency/type"
 import { Sponsor } from "@/types/sponsor-type"
-import NotFound from "@/app/(public)/not-found"
 
 interface QueryParams {
   domain: string
@@ -58,7 +57,9 @@ export async function getInfoWebSite({
     return data
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
     throw new Error("Erro ao buscar os dados da página Home")
   }

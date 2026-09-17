@@ -28,7 +28,9 @@ export async function getSponsors({
     return data
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
     throw new Error("Erro ao buscar os dados da página Home")
   }
@@ -54,7 +56,9 @@ export async function sponsorBySlug({
     return data
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
     throw new Error("Erro ao buscar os dados da página Home")
   }

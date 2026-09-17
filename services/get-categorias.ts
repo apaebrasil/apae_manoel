@@ -15,8 +15,10 @@ export async function getCategorias({
     return categorias.filter((categoria) => categoria.idSite === siteId)
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+      throw new Error(`Erro ao buscar dados: ${error.message}`, {
+        cause: error,
+      })
     }
-    throw new Error("Erro ao buscar os dados da categoria")
+    throw new Error("Erro ao buscar os dados da página Home")
   }
 }
