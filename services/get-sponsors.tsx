@@ -7,40 +7,55 @@ export async function getSponsors({
   siteId: number | string
   slug?: string
 }): Promise<Sponsor[]> {
-  if (!siteId) {
-    throw new Error("O siteId é obrigatório para buscar os patrocinadores")
+  try {
+    if (!siteId) {
+      throw new Error("O siteId é obrigatório para buscar os patrocinadores")
+    }
+
+    let url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/parceiro?siteId=${siteId}`
+
+    if (slug) {
+      url += `&slug=${slug}`
+    }
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar os patrocinadores")
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da página Home")
   }
-
-  let url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/parceiro?siteId=${siteId}`
-
-  if (slug) {
-    url += `&slug=${slug}`
-  }
-
-  const response = await fetch(url)
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar os patrocinadores")
-  }
-
-  const data = await response.json()
-  return data
 }
 
 interface sponsorBySlugProps {
   id: string
 }
+
 export async function sponsorBySlug({
   id,
 }: sponsorBySlugProps): Promise<Sponsor> {
-  const response = await fetch(
-    `https://fluigdev.apaebrasil.org.br/portalapi/v1/parceiro/${id}`
-  )
+  try {
+    const response = await fetch(
+      `https://fluigdev.apaebrasil.org.br/portalapi/v1/parceiro/${id}`
+    )
 
-  if (!response.ok) {
-    throw new Error("Erro ao fazer requisição dos patrocinadores")
+    if (!response.ok) {
+      throw new Error("Erro ao fazer requisição dos patrocinadores")
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da página Home")
   }
-
-  const data = await response.json()
-  return data
 }

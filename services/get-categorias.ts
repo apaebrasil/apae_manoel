@@ -9,9 +9,14 @@ interface GetCategoriasProps {
 export async function getCategorias({
   siteId,
 }: GetCategoriasProps): Promise<CategoriaTransparencia[]> {
-  const { categorias } = await getInfoWebSite({ domain: "apaebrasil.org.br" })
+  try {
+    const { categorias } = await getInfoWebSite({ domain: "apaebrasil.org.br" })
 
-  console.log("oi oi oi ", categorias)
-
-  return categorias.filter((categoria) => categoria.idSite === siteId)
+    return categorias.filter((categoria) => categoria.idSite === siteId)
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da categoria")
+  }
 }

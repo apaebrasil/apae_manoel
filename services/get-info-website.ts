@@ -3,6 +3,7 @@ import { MenuItem, Submenu } from "@/components/navigation/type"
 import { Noticies } from "@/components/news/type"
 import { CategoriaTransparencia } from "@/components/transparency/type"
 import { Sponsor } from "@/types/sponsor-type"
+import NotFound from "@/app/(public)/not-found"
 
 interface QueryParams {
   domain: string
@@ -44,14 +45,21 @@ interface ResponseWebsiteInfo {
 export async function getInfoWebSite({
   domain,
 }: QueryParams): Promise<ResponseWebsiteInfo> {
-  const websiteInfo = await fetch(
-    `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`
-  )
+  try {
+    const websiteInfo = await fetch(
+      `https://fluigdev.apaebrasil.org.br/portalapi/v1/sites/dominio/${domain}`
+    )
 
-  if (!websiteInfo.ok) {
+    if (!websiteInfo.ok) {
+      throw new Error("Erro ao buscar os dados da página Home")
+    }
+
+    const data = await websiteInfo.json()
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
     throw new Error("Erro ao buscar os dados da página Home")
   }
-
-  const data = await websiteInfo.json()
-  return data
 }

@@ -69,49 +69,63 @@ export async function getNews({
   siteId,
   titulo,
 }: GetNewsProps) {
-  let url = ""
+  try {
+    let url = ""
 
-  if (slug) {
-    url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&id=${slug}`
-  }
+    if (slug) {
+      url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&id=${slug}`
+    }
 
-  if (page && limit) {
-    url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&pagina=${page}&tamanho=${limit}`
-  }
+    if (page && limit) {
+      url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&pagina=${page}&tamanho=${limit}`
+    }
 
-  if (titulo) {
-    url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&titulo=${titulo}&pagina=${page}&tamanho=${limit}`
-  }
+    if (titulo) {
+      url = `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia?siteId=${siteId}&titulo=${titulo}&pagina=${page}&tamanho=${limit}`
+    }
 
-  const response = await fetch(url)
-  if (!response.ok) {
-    throw new Error("Erro ao fazer requisiçaõ das notícias")
-  }
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error("Erro ao fazer requisiçaõ das notícias")
+    }
 
-  const data: {
-    itens: GetNewsData[]
-    total: number
-    paginaAtual: number
-    totalPaginas: number
-  } = await response.json()
+    const data: {
+      itens: GetNewsData[]
+      total: number
+      paginaAtual: number
+      totalPaginas: number
+    } = await response.json()
 
-  return {
-    news: data.itens,
-    totalPaginas: data.totalPaginas,
+    return {
+      news: data.itens,
+      totalPaginas: data.totalPaginas,
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da página Notícias")
   }
 }
 
 export async function getNewsHighlight(): Promise<GetNewsProps[]> {
-  const response = await fetch(
-    "https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia/destaques"
-  )
+  try {
+    const response = await fetch(
+      "https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia/destaques"
+    )
 
-  if (!response.ok) {
-    throw new Error("Erro ao fazer requisiçaõ das notícias em destaque")
+    if (!response.ok) {
+      throw new Error("Erro ao fazer requisiçaõ das notícias em destaque")
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da Notícias em destaque")
   }
-
-  const data = await response.json()
-  return data
 }
 
 interface newsBySlugProps {
@@ -121,14 +135,21 @@ interface newsBySlugProps {
 export async function newsBySlug({
   id,
 }: newsBySlugProps): Promise<GetNewsData> {
-  const response = await fetch(
-    `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia/${id}`
-  )
+  try {
+    const response = await fetch(
+      `https://fluigdev.apaebrasil.org.br/portalapi/v1/noticia/${id}`
+    )
 
-  if (!response.ok) {
-    throw new Error("Erro ao fazer requisiçaõ das notícias em destaque")
+    if (!response.ok) {
+      throw new Error("Erro ao fazer requisiçaõ das notícias em destaque")
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error("Erro ao buscar dados: ", error.message as ErrorOptions)
+    }
+    throw new Error("Erro ao buscar os dados da notícia")
   }
-
-  const data = await response.json()
-  return data
 }
