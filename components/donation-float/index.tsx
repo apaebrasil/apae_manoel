@@ -16,7 +16,7 @@ export function DonationFloat() {
       <Button
         type="button"
         onClick={() => setIsDismissed(false)}
-        className="fixed right-5 bottom-5 z-50 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border bg-card text-sm font-semibold text-foreground shadow-lg transition hover:-translate-y-1 hover:border-blue-500 hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+        className="fixed bottom-5 left-5 z-50 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border bg-card text-sm font-semibold text-foreground shadow-lg transition hover:-translate-y-1 hover:border-blue-500 hover:bg-blue-100 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
         aria-label="Reabrir convite de doação"
         title="Apoie este projeto"
       >
@@ -27,17 +27,24 @@ export function DonationFloat() {
 
   return (
     <aside
-      className={`fixed right-5 bottom-5 z-50 w-[calc(100vw-2.5rem)] max-w-sm transition-all duration-300 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-95"}`}
+      className={`fixed bottom-5 left-5 z-50 w-[calc(100vw-2.5rem)] max-w-sm transition-all duration-300 ${isOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-95"}`}
       aria-label="Convite de doação"
     >
       <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/15">
         <div className="flex items-center gap-3 bg-blue-900 px-4 py-3 text-primary-foreground">
-          <span
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15 text-lg"
-            aria-hidden="true"
+          <button
+            type="button"
+            onClick={() => setIsDismissed(true)}
+            className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full text-lg text-primary-foreground/70 transition hover:bg-blue-300 hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            aria-label="Fechar convite de doação"
           >
-            <HeartPlus size={20} />
-          </span>
+            <X size={16} />
+          </button>
+
+          <Separator
+            orientation="vertical"
+            className="bg-primary-foreground/20"
+          />
 
           <button
             type="button"
@@ -56,19 +63,12 @@ export function DonationFloat() {
             </span>
           </button>
 
-          <Separator
-            orientation="vertical"
-            className="bg-primary-foreground/20"
-          />
-
-          <button
-            type="button"
-            onClick={() => setIsDismissed(true)}
-            className="flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-full text-lg text-primary-foreground/70 transition hover:bg-blue-300 hover:text-primary-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            aria-label="Fechar convite de doação"
+          <span
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15 text-lg"
+            aria-hidden="true"
           >
-            <X size={16} />
-          </button>
+            <HeartPlus size={20} />
+          </span>
         </div>
 
         <div

@@ -89,7 +89,7 @@ export function AccessibilityMenu() {
   }
 
   return (
-    <div className="fixed bottom-5 left-5 z-50">
+    <div className="fixed right-5 bottom-5 z-50">
       {isOpen && (
         <div
           role="dialog"
@@ -216,7 +216,7 @@ export function AccessibilityMenu() {
             : "Abrir menu de acessibilidade"
         }
         title="Acessibilidade"
-        className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-border bg-blue-900 text-primary-foreground shadow-lg transition hover:-translate-y-1 hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+        className="ml-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-border bg-blue-900 text-primary-foreground shadow-lg transition hover:-translate-y-1 hover:bg-blue-800 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
       >
         <Accessibility size={22} />
       </Button>
