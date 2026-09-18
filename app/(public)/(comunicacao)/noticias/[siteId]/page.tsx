@@ -41,17 +41,6 @@ export default async function Page({ params, searchParams }: PageProps) {
     responseNews.totalPaginas / responseNews.news.length
   )
 
-  // async function removeFilter() {
-  //   "use server"
-  //   const params = new URLSearchParams(currentParams as Record<string, string>)
-  //   params.delete("titulo")
-
-  //   const targetUrl = params.toString()
-  //     ? `/noticias?${params.toString()}`
-  //     : `/noticias/${siteId}`
-  //   redirect(targetUrl)
-  // }
-
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <SectionWrapper className="py-12 md:py-24">
@@ -107,23 +96,6 @@ export default async function Page({ params, searchParams }: PageProps) {
             </div>
           </div>
 
-          {/* <div className="flex flex-col gap-1.5 lg:w-48">
-            <label className="text-xs font-semibold text-blue-900/70 uppercase">
-              Categoria
-            </label>
-            <Select>
-              <SelectTrigger className="w-full">
-                <Filter className="h-4 w-4 text-blue-400" />
-                <SelectValue placeholder="Todas" />
-              </SelectTrigger>
-              <SelectContent alignItemWithTrigger={false} sideOffset={4}>
-                <SelectItem value="faculdade">Faculdade</SelectItem>
-                <SelectItem value="campanha">campanha</SelectItem>
-                <SelectItem value="evento">Evento</SelectItem>
-              </SelectContent>
-            </Select>
-          </div> */}
-
           <div className="flex flex-col gap-1.5 lg:w-56">
             <label className="text-xs font-semibold text-blue-900/70 uppercase">
               Período
@@ -158,6 +130,7 @@ export default async function Page({ params, searchParams }: PageProps) {
             </Button>
             <Link
               href={`/noticias/${siteId}`}
+              prefetch
               className="cursor-pointer rounded-lg border px-5 py-2 text-sm lg:mb-0"
             >
               Limpar filtro
@@ -176,16 +149,16 @@ export default async function Page({ params, searchParams }: PageProps) {
               className="flex h-full"
             >
               <Card className="group/card flex h-full w-full cursor-pointer flex-col gap-0 overflow-hidden rounded-2xl p-0 shadow-sm shadow-blue-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-950/10 hover:ring-blue-200">
-                <CardHeader className="relative h-56 w-full overflow-hidden p-0">
+                <CardHeader className="relative aspect-video w-full overflow-hidden bg-gray-100">
                   {news.url ? (
                     <>
                       <Image
                         src={news.url}
                         alt={news.titulo}
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        loading="lazy"
                         fill
                         className="object-cover transition-transform duration-500 group-hover/card:scale-110"
-                        priority
                       />
                       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/60 via-blue-950/0 to-transparent" />
                     </>
