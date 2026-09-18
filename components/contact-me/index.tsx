@@ -146,12 +146,12 @@ export function ContactMe({ email, endereco, telefone }: ContactMeProps) {
           <Button
             type="submit"
             variant="outline"
-            className="cursor-pointer bg-blue-400 hover:bg-blue-500"
+            className="cursor-pointer bg-blue-700 p-6 hover:bg-blue-800"
           >
-            <Send size={16} className="text-white" />
             <span className="text-base font-semibold text-white">
               Enviar mensagem
             </span>
+            <Send size={26} className="text-white" />
           </Button>
         </form>
       </aside>
