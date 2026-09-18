@@ -32,14 +32,6 @@ const data = {
 }
 
 export async function About() {
-  const response: typeof data = await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(data)
-    }, 5000)
-  })
-
-  const aboutData = response
-
   return (
     <div className="panel container mx-auto px-4">
       <div className="mb-12 text-center">
@@ -47,10 +39,10 @@ export async function About() {
           id="impact-heading"
           className="md:text-4x l mb-4 text-3xl font-bold text-balance text-white"
         >
-          {aboutData.title}
+          {data.title}
         </h2>
         <p className="mx-auto max-w-2xl text-lg text-pretty text-primary-foreground/80">
-          {aboutData.description}
+          {data.description}
         </p>
       </div>
 
@@ -59,14 +51,14 @@ export async function About() {
         role="list"
         aria-label="Estatísticas de impacto"
       >
-        {aboutData.impactStats.map((stat, index) => (
+        {data.impactStats.map((stat, index) => (
           <ImpactStatCard key={index} stat={stat} index={index} />
         ))}
       </div>
 
       <div className="mt-12 text-center">
         <p className="mx-auto max-w-3xl leading-relaxed text-primary-foreground/80">
-          {aboutData.summary}
+          {data.summary}
         </p>
       </div>
     </div>
