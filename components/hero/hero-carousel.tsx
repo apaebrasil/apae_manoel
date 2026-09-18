@@ -98,7 +98,7 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
                           src={item.url}
                           alt={item.titulo}
                           fill
-                          priority={index === 0}
+                          priority
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-blue-950/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
