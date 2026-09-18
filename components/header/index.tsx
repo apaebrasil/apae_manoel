@@ -30,6 +30,7 @@ export async function Header() {
               height={150}
               className="h-auto w-20 object-contain"
               title="Apae Braisl - Home"
+              priority
             />
           </Link>
 
@@ -41,6 +42,7 @@ export async function Header() {
               height={100}
               className="h-auto w-12 object-contain"
               title="Certified Client Directory"
+              priority
             />
           </Link>
         </div>
