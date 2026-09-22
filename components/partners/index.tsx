@@ -3,6 +3,7 @@ import { Handshake } from "lucide-react"
 import { Badge } from "../ui/badge"
 import { PartnerCard } from "./partner-card"
 import { Sponsor } from "@/types/sponsor-type"
+import { clsx } from "cn"
 
 interface PartnersProps {
   siteId: number
@@ -29,8 +30,13 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
         </p>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_1.4fr] lg:items-stretch">
-        <div className="relative isolate flex flex-col justify-between overflow-hidden rounded-3xl bg-blue-950 p-8 text-white md:p-10">
+      <div
+        className={clsx(
+          "grid gap-6 lg:items-stretch",
+          sponsor.length > 0 ? "grid-cols-[1fr_1.4fr]" : "grid-cols-1"
+        )}
+      >
+        <div className="relative isolate mx-auto flex max-w-5xl flex-col justify-between overflow-hidden rounded-3xl bg-blue-950 p-8 text-white md:p-10">
           <div className="absolute inset-0 -z-10 bg-linear-to-br from-blue-950 via-blue-950/95 to-blue-900/90" />
 
           <div className="space-y-4">
@@ -55,25 +61,27 @@ export function Partners({ siteId, sponsor }: PartnersProps) {
           </Link>
         </div>
 
-        <div className="flex flex-col gap-6 rounded-3xl bg-blue-50 p-6 md:p-8">
-          <p className="text-sm font-semibold tracking-wide text-blue-950 uppercase">
-            Empresas que já apoiam a causa
-          </p>
+        {sponsor.length > 0 && (
+          <div className="flex flex-col gap-6 rounded-3xl bg-blue-50 p-6 md:p-8">
+            <p className="text-sm font-semibold tracking-wide text-blue-950 uppercase">
+              Empresas que já apoiam a causa
+            </p>
 
-          <div
-            role="list"
-            aria-label="Empresas parceiras"
-            className="flex flex-wrap content-start gap-5"
-          >
-            {sponsor.map((partner) => (
-              <PartnerCard
-                key={partner.uuid}
-                partner={partner}
-                siteId={siteId}
-              />
-            ))}
+            <div
+              role="list"
+              aria-label="Empresas parceiras"
+              className="flex flex-wrap content-start gap-5"
+            >
+              {sponsor.map((partner) => (
+                <PartnerCard
+                  key={partner.uuid}
+                  partner={partner}
+                  siteId={siteId}
+                />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
