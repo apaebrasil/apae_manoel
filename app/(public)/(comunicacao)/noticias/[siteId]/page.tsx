@@ -5,12 +5,6 @@ import { SectionWrapper } from "@/components/section"
 import { fetch } from "@/services"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {
-  Combobox,
-  ComboboxContent,
-  ComboboxInput,
-  ComboboxList,
-} from "@/components/ui/combobox"
 import { Card, CardHeader } from "@/components/ui/card"
 import { formatedDate } from "@/lib/formated-date"
 import { PaginationControls } from "@/components/news/pagination-controls"
@@ -45,10 +39,6 @@ export default async function Page({ params, searchParams }: PageProps) {
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">
       <SectionWrapper className="py-12 md:py-24">
         <header className="relative container mx-auto mb-10 overflow-hidden">
-          <span className="pointer-events-none absolute -top-6 left-0 z-0 text-5xl leading-none font-black text-blue-950/5 select-none sm:-top-10 sm:text-7xl md:text-[8rem]">
-            NOTÍCIAS
-          </span>
-
           <div className="relative z-10">
             <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase shadow-sm shadow-blue-600/30">
               <Newspaper className="h-3.5 w-3.5" />
@@ -77,7 +67,7 @@ export default async function Page({ params, searchParams }: PageProps) {
           aria-label="Filtrar notícias"
           className="flex flex-col gap-4 rounded-2xl border border-blue-200 bg-white p-5 shadow-sm shadow-blue-950/5 lg:flex-row lg:items-end"
         >
-          <div className="flex flex-1 flex-col gap-1.5">
+          <div className="flex flex-3 flex-col gap-1.5">
             <label
               htmlFor="titulo"
               className="text-xs font-semibold text-blue-900/70 uppercase"
@@ -96,29 +86,11 @@ export default async function Page({ params, searchParams }: PageProps) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-1.5 lg:w-56">
+          <div className="flex flex-1 flex-col gap-1.5 lg:w-56">
             <label className="text-xs font-semibold text-blue-900/70 uppercase">
               Período
             </label>
-            <Combobox>
-              <div className="relative">
-                <ComboboxInput
-                  id="calndar-filter"
-                  className="placeholder:pl-9"
-                  placeholder="Selecione uma data"
-                />
-              </div>
-              <ComboboxContent
-                side="bottom"
-                align="start"
-                sideOffset={4}
-                className="w-auto"
-              >
-                <ComboboxList className="p-0">
-                  <BraszilianCalendar />
-                </ComboboxList>
-              </ComboboxContent>
-            </Combobox>
+            <BraszilianCalendar />
           </div>
 
           <div className="space-x-5">
