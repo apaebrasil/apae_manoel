@@ -5,8 +5,17 @@ import { useMemo, useState } from "react"
 import { ArrowRight, Building2, Search, Users2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { PersonCard } from "@/components/organizational-structure/person-card"
 import { Setor } from "./type"
+
+const TODOS_VALUE = "todos"
 
 interface OrganizationalStructureProps {
   setores: Setor
@@ -41,37 +50,69 @@ export function OrganizationalStructure({
     [setores]
   )
 
-  const colaboradoresDoSite = useMemo(
-    () => setoresOrdenados.flatMap((setor) => setor.colaboradores),
-    [setoresOrdenados]
-  )
-
-  const setorNomePorId = useMemo(
-    () => new Map(setoresOrdenados.map((setor) => [setor.id, setor.nome])),
-    [setoresOrdenados]
-  )
-
-  const colaboradores = useMemo(() => {
-    const base = selectedSetorId
-      ? colaboradoresDoSite.filter(
-          (colaborador) => colaborador.idSetor === selectedSetorId
-        )
-      : colaboradoresDoSite
-
+  const grupos = useMemo(() => {
     const termo = search.trim().toLowerCase()
-    if (!termo) return base
+    const setoresParaExibir = selectedSetorId
+      ? setoresOrdenados.filter((setor) => setor.id === selectedSetorId)
+      : setoresOrdenados
 
-    return base.filter(
-      (colaborador) =>
-        colaborador.nome.toLowerCase().includes(termo) ||
-        colaborador.cargo.toLowerCase().includes(termo)
-    )
-  }, [colaboradoresDoSite, selectedSetorId, search])
+    return setoresParaExibir
+      .map((setor) => ({
+        setor,
+        colaboradores: setor.colaboradores.filter(
+          (colaborador) =>
+            !termo ||
+            colaborador.nome.toLowerCase().includes(termo) ||
+            colaborador.cargo.toLowerCase().includes(termo)
+        ),
+      }))
+      .filter((grupo) => grupo.colaboradores.length > 0)
+  }, [setoresOrdenados, selectedSetorId, search])
+
+  const totalColaboradores = useMemo(
+    () =>
+      grupos.reduce((total, grupo) => total + grupo.colaboradores.length, 0),
+    [grupos]
+  )
 
   return (
     <div className="flex flex-col gap-8 pb-16 md:flex-row md:pb-24">
       <div className="md:shrink-0">
-        <div className="w-full rounded-md border-2 border-blue-200 bg-blue-100 p-3 md:w-72">
+        {/* Mobile: department navigation as a select */}
+        <div className="md:hidden">
+          <label
+            htmlFor="setor-select"
+            className="mb-1.5 block text-xs font-bold text-zinc-800"
+          >
+            Navegar por departamento
+          </label>
+          <Select
+            value={
+              selectedSetorId === null ? TODOS_VALUE : String(selectedSetorId)
+            }
+            onValueChange={(value) =>
+              setSelectedSetorId(value === TODOS_VALUE ? null : Number(value))
+            }
+          >
+            <SelectTrigger id="setor-select" className="w-full">
+              <SelectValue placeholder="Todos os departamentos" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value={TODOS_VALUE}>
+                <Users2 size={14} />
+                <span>Todos os departamentos</span>
+              </SelectItem>
+              {setoresOrdenados.map((setor) => (
+                <SelectItem key={setor.uuid} value={String(setor.id)}>
+                  <SetorIcon icon={setor.icon} nome={setor.nome} />
+                  <span>{setor.nome}</span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="hidden w-full rounded-md border-2 border-blue-200 bg-blue-100 p-3 md:block md:w-72">
           <h3
             id="setores-heading"
             className="mb-3.5 text-xs font-bold text-zinc-800"
@@ -154,31 +195,43 @@ export function OrganizationalStructure({
           </div>
         </div>
         <Separator />
-        <h2
-          id="colaboradores-heading"
-          className="mt-4 text-lg font-bold text-zinc-900"
-        >
-          {selectedSetorId
-            ? setorNomePorId.get(selectedSetorId)
-            : "Todos os departamentos"}
-        </h2>
-        {colaboradores.length === 0 ? (
+
+        {totalColaboradores === 0 ? (
           <p className="pt-10 text-center text-sm text-zinc-600">
             Nenhum colaborador encontrado.
           </p>
         ) : (
-          <div
-            className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
-            role="list"
-            aria-labelledby="colaboradores-heading"
-          >
-            {colaboradores.map((colaborador) => (
-              <div key={colaborador.uuid} role="listitem">
-                <PersonCard
-                  person={colaborador}
-                  setorNome={setorNomePorId.get(colaborador.idSetor)}
-                />
-              </div>
+          <div className="divide-y divide-blue-100">
+            {grupos.map(({ setor, colaboradores }) => (
+              <section
+                key={setor.uuid}
+                aria-labelledby={`setor-heading-${setor.uuid}`}
+                className="py-6 first:pt-6 last:pb-0"
+              >
+                <div className="mb-4 flex items-center gap-2">
+                  <SetorIcon icon={setor.icon} nome={setor.nome} />
+                  <h2
+                    id={`setor-heading-${setor.uuid}`}
+                    className="text-lg font-bold text-zinc-900"
+                  >
+                    {setor.nome}
+                  </h2>
+                  <span className="text-xs font-medium text-zinc-500">
+                    ({colaboradores.length})
+                  </span>
+                </div>
+
+                <div
+                  className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
+                  role="list"
+                >
+                  {colaboradores.map((colaborador) => (
+                    <div key={colaborador.uuid} role="listitem">
+                      <PersonCard person={colaborador} setorNome={setor.nome} />
+                    </div>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         )}
