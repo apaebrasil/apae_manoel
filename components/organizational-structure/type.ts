@@ -13,11 +13,15 @@ export interface Colaborador {
 }
 
 export interface Setor {
-  id: number
-  uuid: string
-  nome: string
-  ordem: number
-  icon: string
-  colaboradores: Colaborador[]
-  idSite: number
+  itens: [
+    {
+      id: number
+      uuid: string
+      nome: string
+      ordem: number
+      icon: string
+      colaboradores: Colaborador[]
+      idSite: number
+    },
+  ]
 }

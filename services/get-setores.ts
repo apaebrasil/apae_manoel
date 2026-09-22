@@ -5,18 +5,19 @@ interface GetSetoresProps {
   idSite?: number
 }
 
-export async function getSetores({ idSite }: GetSetoresProps = {}): Promise<
-  Setor[]
-> {
+export async function getSetores({
+  idSite,
+}: GetSetoresProps = {}): Promise<Setor> {
   try {
     const response = await fetch(
       `https://fluigdev.apaebrasil.org.br/portalapi/v1/setor/?siteId=${idSite}`
     )
+
     if (!response.ok) {
       throw new Error("Erro ao buscar os setores")
     }
 
-    const data: Setor[] = await response.json()
+    const data: Setor = await response.json()
 
     if (!idSite) {
       return data

@@ -9,7 +9,7 @@ import { PersonCard } from "@/components/organizational-structure/person-card"
 import { Setor } from "./type"
 
 interface OrganizationalStructureProps {
-  setores: Setor[]
+  setores: Setor
 }
 
 function SetorIcon({ icon, nome }: { icon: string; nome: string }) {
@@ -37,7 +37,7 @@ export function OrganizationalStructure({
   const [search, setSearch] = useState("")
 
   const setoresOrdenados = useMemo(
-    () => [...setores].sort((a, b) => a.ordem - b.ordem),
+    () => [...setores.itens].sort((a, b) => a.ordem - b.ordem),
     [setores]
   )
 
@@ -72,7 +72,10 @@ export function OrganizationalStructure({
     <div className="flex flex-col gap-8 pb-16 md:flex-row md:pb-24">
       <div className="md:shrink-0">
         <div className="w-full rounded-md border-2 border-blue-200 bg-blue-100 p-3 md:w-72">
-          <h3 id="setores-heading" className="mb-3.5 text-xs font-bold text-zinc-800">
+          <h3
+            id="setores-heading"
+            className="mb-3.5 text-xs font-bold text-zinc-800"
+          >
             Navegar por departamento
           </h3>
 
@@ -151,7 +154,10 @@ export function OrganizationalStructure({
           </div>
         </div>
         <Separator />
-        <h2 id="colaboradores-heading" className="mt-4 text-lg font-bold text-zinc-900">
+        <h2
+          id="colaboradores-heading"
+          className="mt-4 text-lg font-bold text-zinc-900"
+        >
           {selectedSetorId
             ? setorNomePorId.get(selectedSetorId)
             : "Todos os departamentos"}
