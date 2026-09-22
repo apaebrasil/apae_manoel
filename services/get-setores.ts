@@ -12,7 +12,6 @@ export async function getSetores({ idSite }: GetSetoresProps = {}): Promise<
     const response = await fetch(
       `https://fluigdev.apaebrasil.org.br/portalapi/v1/setor/?siteId=${idSite}`
     )
-    console.log(response)
     if (!response.ok) {
       throw new Error("Erro ao buscar os setores")
     }
