@@ -55,17 +55,10 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
           className="w-full"
         >
           <CarouselContent className="ml-0">
-            {noticias.map((item, index) => (
+            {noticias.map((item) => (
               <CarouselItem key={item.id} className="basis-full pl-0">
                 <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
                   <div className="relative order-2 lg:order-1 lg:col-span-5">
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute -top-10 -left-1 text-[6.5rem] leading-none font-black text-blue-950/6 select-none sm:text-[8rem] lg:-top-14 lg:text-[9rem]"
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
                     <div className="relative">
                       <p className="text-xs font-semibold tracking-[0.2em] text-blue-600 uppercase">
                         {item.categoria}
@@ -73,7 +66,7 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
                       <h2 className="mt-4 text-4xl leading-[0.98] font-bold tracking-tight text-blue-950 sm:text-5xl lg:text-[3.4rem]">
                         {item.titulo}
                       </h2>
-                      <p className="mt-5 max-w-sm text-base leading-relaxed text-blue-950/60">
+                      <p className="mt-5 max-w-sm text-justify text-base leading-relaxed font-medium text-blue-950/80">
                         {item.descricao}
                       </p>
                       <Link
@@ -89,10 +82,6 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
 
                   <div className="group relative order-1 pb-5 lg:order-2 lg:col-span-7">
                     <div className="relative">
-                      <div
-                        aria-hidden
-                        className="absolute top-3 left-3 h-full w-full rounded-2xl border border-blue-600/25 transition-transform duration-500 group-hover:top-4 group-hover:left-4 sm:top-4 sm:left-4 sm:group-hover:top-5 sm:group-hover:left-5"
-                      />
                       <div className="relative h-75 w-full cursor-pointer overflow-hidden rounded-2xl bg-blue-950/5 sm:h-100 lg:h-120">
                         <Image
                           src={item.url}
@@ -169,7 +158,7 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
               type="button"
               onClick={() => api?.scrollPrev()}
               aria-label="Slide anterior"
-              className="flex h-8 w-8 items-center justify-center rounded-full text-blue-950/50 transition-colors hover:bg-blue-600/10 hover:text-blue-600"
+              className="flex size-10 cursor-pointer items-center justify-center rounded-full text-blue-950/80 transition-colors hover:bg-blue-600/10 hover:text-blue-600"
             >
               <ArrowLeft className="h-4 w-4" />
             </button>
@@ -177,7 +166,7 @@ export function HeroCarousel({ noticias, siteId }: HeroCarouselProps) {
               type="button"
               onClick={() => api?.scrollNext()}
               aria-label="Próximo slide"
-              className="flex h-8 w-8 items-center justify-center rounded-full text-blue-950/50 transition-colors hover:bg-blue-600/10 hover:text-blue-600"
+              className="flex size-10 cursor-pointer items-center justify-center rounded-full text-blue-950/80 transition-colors hover:bg-blue-600/10 hover:text-blue-600"
             >
               <ArrowRight className="h-4 w-4" />
             </button>
