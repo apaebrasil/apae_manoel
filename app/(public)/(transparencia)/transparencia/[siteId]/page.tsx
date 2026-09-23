@@ -14,10 +14,11 @@ export default async function Page({ params }: PageProps) {
     fetch.getCategorias({ siteId: Number(siteId) }),
     fetch.getDocumentos(),
   ])
+
   const categoriasOrdenadas = categorias.toSorted((a, b) => a.ordem - b.ordem)
 
   const contagemPorCategoria = new Map<number, number>()
-  for (const documento of documentos) {
+  for (const documento of documentos.itens) {
     contagemPorCategoria.set(
       documento.idCategoria,
       (contagemPorCategoria.get(documento.idCategoria) ?? 0) + 1

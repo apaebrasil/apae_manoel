@@ -78,7 +78,6 @@ export function OrganizationalStructure({
   return (
     <div className="flex flex-col gap-8 pb-16 md:flex-row md:pb-24">
       <div className="md:shrink-0">
-        {/* Mobile: department navigation as a select */}
         <div className="md:hidden">
           <label
             htmlFor="setor-select"

@@ -19,7 +19,9 @@ export default async function Page({ params }: PageProps) {
   if (!categoriaInfo) notFound()
 
   const documentos = await fetch.getDocumentos({ idCategoria: categoriaId })
-  const documentosOrdenados = documentos.toSorted((a, b) => a.ordem - b.ordem)
+  const documentosOrdenados = documentos.itens.toSorted(
+    (a, b) => a.ordem - b.ordem
+  )
 
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">

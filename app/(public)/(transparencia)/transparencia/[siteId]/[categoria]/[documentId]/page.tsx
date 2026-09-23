@@ -20,7 +20,9 @@ export default async function Page({ params }: PageProps) {
   const categoriaInfo = categorias.find((item) => item.id === categoriaId)
 
   const documentos = await fetch.getDocumentos({ idCategoria: categoriaId })
-  const documento = documentos.find((item) => String(item.id) === documentId)
+  const documento = documentos.itens.find(
+    (item) => String(item.id) === documentId
+  )
 
   if (!categoriaInfo) {
     notFound()
@@ -30,7 +32,7 @@ export default async function Page({ params }: PageProps) {
     notFound()
   }
 
-  const outrosDocumentos = documentos
+  const outrosDocumentos = documentos.itens
     .filter((item) => item.id !== documento.id)
     .toSorted((a, b) => a.ordem - b.ordem)
 

@@ -30,6 +30,10 @@ export interface Documento {
   ano: string
 }
 
+export interface DocumentoItems {
+  itens: Documento[]
+}
+
 export interface CategoriaTransparencia {
   id: number
   uuid: string

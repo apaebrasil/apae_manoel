@@ -1,5 +1,4 @@
-import "server-only"
-import { Documento } from "@/components/transparency/type"
+import { DocumentoItems } from "@/components/transparency/type"
 
 interface GetDocumentosProps {
   idCategoria?: number
@@ -7,7 +6,7 @@ interface GetDocumentosProps {
 
 export async function getDocumentos({
   idCategoria,
-}: GetDocumentosProps = {}): Promise<Documento[]> {
+}: GetDocumentosProps = {}): Promise<DocumentoItems> {
   try {
     const response = await fetch(
       "https://fluigdev.apaebrasil.org.br/portalapi/v1/documento"
@@ -17,11 +16,17 @@ export async function getDocumentos({
       throw new Error("Erro ao buscar os documentos")
     }
 
-    const data: Documento[] = await response.json()
+    const data: DocumentoItems = await response.json()
 
-    if (!idCategoria) return data
+    if (!idCategoria) {
+      return data
+    }
 
-    return data.filter((documento) => documento.idCategoria === idCategoria)
+    return {
+      itens: data.itens.filter(
+        (document) => document.idCategoria === idCategoria
+      ),
+    }
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Erro ao buscar dados: ${error.message}`, {
