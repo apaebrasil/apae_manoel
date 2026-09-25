@@ -6,7 +6,7 @@ import { fetch } from "@/services"
 
 export default async function Page() {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil.org.br",
+    domain: "apaemanoel.org.br",
   })
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">

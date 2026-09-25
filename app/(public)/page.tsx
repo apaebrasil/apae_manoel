@@ -10,7 +10,7 @@ import { fetch } from "@/services"
 
 export default async function Page() {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil.org.br",
+    domain: "apaemanoel.org.br",
   })
   const camping = response.noticias.filter((item) => item.tipo === "Campanha")
 

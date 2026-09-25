@@ -10,7 +10,7 @@ export async function getCategorias({
   siteId,
 }: GetCategoriasProps): Promise<CategoriaTransparencia[]> {
   try {
-    const { categorias } = await getInfoWebSite({ domain: "apaebrasil.org.br" })
+    const { categorias } = await getInfoWebSite({ domain: "apaemanoel.org.br" })
 
     return categorias.filter((categoria) => categoria.idSite === siteId)
   } catch (error) {

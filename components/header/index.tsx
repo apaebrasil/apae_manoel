@@ -7,7 +7,7 @@ import { MobileNavigation } from "../mobile-navigation"
 
 export async function Header() {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil.org.br",
+    domain: "apaemanoel.org.br",
   })
 
   const orderMenus = (response.menus ?? []).toSorted(

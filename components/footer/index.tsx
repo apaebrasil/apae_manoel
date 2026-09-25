@@ -6,7 +6,7 @@ import { fetch } from "@/services"
 
 export async function Footer() {
   const response = await fetch.getInfoWebSite({
-    domain: "apaebrasil.org.br",
+    domain: "apaemanoel.org.br",
   })
 
   return (
