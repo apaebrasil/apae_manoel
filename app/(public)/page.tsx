@@ -7,11 +7,22 @@ import { Partners } from "@/components/partners"
 import { SectionWrapper } from "@/components/section"
 import { ServiceSection } from "@/components/service-section"
 import { fetch } from "@/services"
+import { headers } from "next/headers"
+import { notFound } from "next/navigation"
 
 export default async function Page() {
+  const headerList = await headers()
+  const domain = headerList.get("host")
+
+  if (!domain) {
+    notFound()
+  }
+
   const response = await fetch.getInfoWebSite({
-    domain: "apaemanoel.org.br",
+    domain: domain,
   })
+
+  console.log("response: ", response)
   const camping = response.noticias.filter((item) => item.tipo === "Campanha")
 
   return (

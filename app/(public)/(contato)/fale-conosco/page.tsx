@@ -3,10 +3,18 @@ import { ContactMe } from "@/components/contact-me"
 import { SectionWrapper } from "@/components/section"
 import { Card } from "@/components/ui/card"
 import { fetch } from "@/services"
+import { headers } from "next/headers"
+import { notFound } from "next/navigation"
 
 export default async function Page() {
+  const headerList = await headers()
+  const domain = headerList.get("host")
+
+  if (!domain) {
+    notFound()
+  }
   const response = await fetch.getInfoWebSite({
-    domain: "apaemanoel.org.br",
+    domain,
   })
   return (
     <main className="min-h-dvh overflow-x-hidden bg-blue-50 px-5">

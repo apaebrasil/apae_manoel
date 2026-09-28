@@ -3,10 +3,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { FooterNavigation } from "./footer-navigation"
 import { fetch } from "@/services"
+import { headers } from "next/headers"
+import { notFound } from "next/navigation"
 
 export async function Footer() {
+  const headerList = await headers()
+  const domain = headerList.get("host")
+
+  if (!domain) {
+    notFound()
+  }
   const response = await fetch.getInfoWebSite({
-    domain: "apaemanoel.org.br",
+    domain,
   })
 
   return (
